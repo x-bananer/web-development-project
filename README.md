@@ -38,7 +38,6 @@ Ohjelmistotuotanto
 ## Structure
 
 ```text
-.
 ├── index.html
 ├── pages/
 │   ├── favorites.html
