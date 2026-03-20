@@ -1,5 +1,3 @@
-# Student Restaurants Web App
-
 Vanilla JS web application for viewing Finnish student restaurants and their daily and weekly menus.
 
 ## Student info
