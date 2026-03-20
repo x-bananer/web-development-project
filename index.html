@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="fi">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Opiskelijaravintolat</title>
+		<link rel="stylesheet" href="./assets/styles/index.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="header__content layout">
+				<label class="header__select">
+					<div class="header__select-icon">✢</div>
+					<select class="header__select-select">
+						<option>Helsinki</option>
+						<option>Espoo</option>
+						<option>Vantaa</option>
+						<option>Tampere</option>
+						<option>Turku</option>
+					</select>
+					<img
+						class="header__select-arrow"
+						src="./assets/icons/chevron-down.svg"
+						alt="Avaa kaupunkilista"
+					>
+				</label>
+
+				<button
+					class="button  button--login"
+					type="button"
+				>
+					<span class="button__label">Kirjaudu</span>
+					<span class="button__icon">
+						<img
+							class="button__icon-image"
+							src="./assets/icons/login.svg"
+							alt="Kirjaudu"
+						>
+					</span>
+				</button>
+			</div>
+		</header>
+
+		<main class="main">
+			<section class="hero layout">
+				<h1 class="hero__title">Opiskelijaravintolat</h1>
+				<p class="hero__description">
+					Selaa ruokaloita ja katso valitsemasi ravintolan menu.
+				</p>
+			</section>
+
+			<nav class="tabs layout">
+				<ul class="tabs__list">
+					<li class="tabs__item">
+						<button
+							class="tabs__button tabs__button--active"
+							type="button"
+						>
+							Lista
+						</button>
+					</li>
+					<li class="tabs__item">
+						<button class="tabs__button" type="button">
+							Kartta
+						</button>
+					</li>
+					<li class="tabs__item">
+						<button class="tabs__button" type="button">
+							Suosikit
+						</button>
+					</li>
+				</ul>
+			</nav>
+
+			<div class="main__container layout">
+				<aside class="sidebar">
+					<h2 class="sidebar__title">Suodattimet</h2>
+					<form class="form">
+						<div class="form__group">
+							<label class="form__label">Haku</label>
+							<div class="field">
+								<input
+									class="field__input"
+									placeholder="Etsi opiskelijaravintolaa"
+								/>
+							</div>
+						</div>
+
+						<div class="form__row">
+							<div class="form__group">
+								<label class="form__label">Suodatin 1</label>
+								<div class="field">
+									<select class="field__input field__input--select">
+										<option>Vaihtoehto 1</option>
+										<option>Vaihtoehto 2</option>
+									</select>
+									<span class="field__icon"></span>
+								</div>
+							</div>
+
+							<div class="form__group">
+								<label class="form__label">Suodatin 2</label>
+								<div class="field">
+									<select class="field__input field__input--select">
+										<option>Vaihtoehto 1</option>
+										<option>Vaihtoehto 2</option>
+									</select>
+									<span class="field__icon"></span>
+								</div>
+							</div>
+						</div>
+					</form>
+				</aside>
+
+				<div class="main__content">
+					<ul class="list">
+						<li class="list__item">
+							<article class="card ">
+								<div class="card__content">
+									<p class="card__badge">Lähin ravintola</p>
+									<h3 class="card__title">Ravintolan nimi</h3>
+									<p class="card__subtitle">Missä ravintola sijaitsee</p>
+									<ul class="card__tags">
+										<li class="card__tag">Ominaisuus 1</li>
+										<li class="card__tag">Ominaisuus 2</li>
+										<li class="card__tag">Ominaisuus 3</li>
+									</ul>
+								</div>
+								<button class="button button--favorite card__button" type="button">
+									<span class="button__icon">
+										<img
+											class="button__icon-image"
+											src="./assets/icons/favorite-default.svg"
+											alt="Lisää suosikkeihin"
+										>
+									</span>
+								</button>
+							</article>
+						</li>
+
+						<li class="list__item">
+							<article class="card">
+								<div class="card__content">
+									<h3 class="card__title">Toinen ravintolan nimi</h3>
+									<p class="card__subtitle">Missä toinen ravintola sijaitsee</p>
+									<ul class="card__tags">
+										<li class="card__tag">Ominaisuus 1</li>
+										<li class="card__tag">Ominaisuus 2</li>
+										<li class="card__tag">Ominaisuus 3</li>
+									</ul>
+								</div>
+								<button
+									class="button button--favorite button--favorite-filled card__button"
+									type="button"
+								>
+									<span class="button__icon">
+										<img
+											class="button__icon-image"
+											src="./assets/icons/favorite-filled.svg"
+											alt="Poista suosikeista"
+										>
+									</span>
+								</button>
+							</article>
+						</li>
+					</ul>
+
+					<nav class="pagination">
+						<ul class="pagination__list">
+							<li class="pagination__item">
+								<button
+									class="button  pagination__button pagination__button--active"
+									type="button"
+								>
+									1
+								</button>
+							</li>
+							<li class="pagination__item">
+								<button
+									class="button  pagination__button"
+									type="button"
+								>
+									2
+								</button>
+							</li>
+							<li class="pagination__item">
+								<button
+									class="button  pagination__button"
+									type="button"
+								>
+									3
+								</button>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

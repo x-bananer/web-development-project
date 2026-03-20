@@ -1,0 +1,43 @@
+.header {
+	height: 80px;
+	border-bottom: 4px solid #000000;
+}
+
+.header__content {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.header__select {
+	position: relative;
+	display: inline-flex;
+}
+
+.header__select-icon {
+	padding-right: 8px;
+}
+
+.header__select-select {
+	padding-right: 18px;
+	font-weight: 600;
+	appearance: none;
+	outline: none;
+}
+
+.header__select-arrow {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	width: 14px;
+	height: 14px;
+	transform: translateY(-50%);
+}
+
+@media (max-width: 768px) {
+	.header {
+		height: 60px;
+	}
+}
