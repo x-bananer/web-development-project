@@ -16,7 +16,7 @@ Ohjelmistotuotanto
 - [x] The source code is available on GitHub or a similar service
 - [x] Good Git practices are used
 - [ ] User login and registration
-- [ ] The user can select favorite restaurants
+- [ ] The user can select favourite restaurants
 - [ ] The user can update profile information
 - [ ] The user can add a profile image
 - [ ] Restaurants can be filtered by city, provider, or other criteria
@@ -40,7 +40,7 @@ Ohjelmistotuotanto
 ```text
 ├── index.html
 ├── pages/
-│   ├── favorites.html
+│   ├── favourites.html
 │   ├── map.html
 │   └── profile.html
 ├── assets/

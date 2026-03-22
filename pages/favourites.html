@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="fi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>STUDEat Favourites</title>
+		<link rel="icon" href="../assets/favicon.png" type="image/png" />
+		<link rel="stylesheet" href="../assets/styles/index.css" />
+	</head>
+	<body>
+		<header class="header">
+			<div class="header__content layout">
+				<a class="header__logo" href="../index.html">
+					STUD<span class="header__logo-accent">EAT</span>
+				</a>
+
+				<nav class="header__nav">
+					<a class="header__nav-link" href="../index.html"
+						>Restaurants</a
+					>
+					<a class="header__nav-link" href="./map.html">Map View</a>
+					<a
+						class="header__nav-link header__nav-link--active"
+						href="./favourites.html"
+						>My Favourites</a
+					>
+				</nav>
+
+				<button
+					class="button button--square button--icon"
+					type="button"
+				>
+					☻
+				</button>
+			</div>
+		</header>
+
+		<main class="content">
+			<section class="hero hero--favourites layout">
+				<div class="hero__main hero__main--wide">
+					<h1 class="hero__title">My Favourites</h1>
+					<p class="hero__description hero__description--pink">
+						Saved Student Fuel Stations
+					</p>
+				</div>
+			</section>
+
+			<section class="catalog layout">
+				<ul class="list">
+					<li class="list__item">
+						<article class="card">
+							<div class="card__media card__media--arabia">
+								<div class="card__badges">
+									<span
+										class="card__badge card__badge--yellow"
+										>Helsinki</span
+									>
+									<span class="card__badge card__badge--pink"
+										>Fazer</span
+									>
+								</div>
+								<div class="card__favourite-icon">♥</div>
+							</div>
+
+							<div class="card__body">
+								<h2 class="card__title">Architectural Eats</h2>
+								<p class="card__address">
+									West Wing Campus, Block B
+								</p>
+								<div class="card__tags">
+									<span
+										class="card__tag card__tag--blue"
+									></span>
+									<span
+										class="card__tag card__tag--pink"
+									></span>
+								</div>
+							</div>
+
+							<button class="button button--view" type="button">
+								Remove From Favourites
+							</button>
+						</article>
+					</li>
+
+					<li class="list__item">
+						<article class="card">
+							<div class="card__media card__media--taffa">
+								<div class="card__badges">
+									<span
+										class="card__badge card__badge--yellow"
+										>Espoo</span
+									>
+									<span class="card__badge card__badge--blue"
+										>Sodexo</span
+									>
+								</div>
+								<div class="card__favourite-icon">♥</div>
+							</div>
+
+							<div class="card__body">
+								<h2 class="card__title">The Brutal Roast</h2>
+								<p class="card__address">
+									Central Library Basement
+								</p>
+								<div class="card__tags">
+									<span
+										class="card__tag card__tag--yellow"
+									></span>
+								</div>
+							</div>
+
+							<button class="button button--view" type="button">
+								Remove From Favourites
+							</button>
+						</article>
+					</li>
+				</ul>
+			</section>
+		</main>
+
+		<footer class="footer layout">
+			<p class="footer__text">© 2026 Kseniia Shlenskaia</p>
+		</footer>
+
+		<nav class="toggle">
+			<div class="toggle__frame">
+				<a class="toggle__link toggle__link--active" href="/">
+					Cards
+				</a>
+				<a class="toggle__link" href="./pages/map.html"> Map View </a>
+				<a
+					class="toggle__link toggle__link--icon"
+					href="./favourites.html"
+				>
+					♥
+				</a>
+			</div>
+		</nav>
+	</body>
+</html>

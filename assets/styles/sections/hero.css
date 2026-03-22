@@ -10,6 +10,10 @@
   max-width: 670px;
 }
 
+.hero__main--wide {
+  max-width: 100%;
+}
+
 .hero__eyebrow {
   font-size: 14px;
   font-weight: 700;
@@ -31,6 +35,12 @@
   padding-block: 8px 16px;
 }
 
+.hero--favourites {
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding-bottom: 0;
+}
+
 .hero__title-line {
   display: block;
 }
@@ -47,6 +57,10 @@
 
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.hero__description--pink {
+  color: var(--pink-color);
 }
 
 .hero__description::before {
@@ -106,8 +120,14 @@
     padding-bottom: 40px;
   }
 
+  .hero--favourites {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding-bottom: 0;
+  }
+
   .hero__title {
-    font-size: 64px;
+    font-size: 60px;
   }
 
   .hero__description {

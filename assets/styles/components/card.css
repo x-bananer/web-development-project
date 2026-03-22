@@ -17,6 +17,7 @@
 .card__media {
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   overflow: hidden;
   padding: 16px 18px;
   border-bottom: 4px solid var(--border-color);
@@ -102,6 +103,20 @@
 
 .card__tag--pink {
   background: var(--pink-color);
+}
+
+.card__favourite-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  border: 4px solid var(--border-color);
+  background: #FFFFFF;
+  color: #BF2900;
+  font-size: 28px;
+  line-height: 1;
 }
 
 .card:hover {
