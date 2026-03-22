@@ -35,7 +35,7 @@
   padding-block: 8px 16px;
 }
 
-.hero--favourites {
+.hero--favorites {
   grid-template-columns: 1fr;
   gap: 0;
   padding-bottom: 0;
@@ -120,7 +120,7 @@
     padding-bottom: 40px;
   }
 
-  .hero--favourites {
+  .hero--favorites {
     grid-template-columns: 1fr;
     gap: 0;
     padding-bottom: 0;

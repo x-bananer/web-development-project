@@ -40,7 +40,7 @@ Ohjelmistotuotanto
 ```text
 ├── index.html
 ├── pages/
-│   ├── favourites.html
+│   ├── favorites.html
 │   ├── map.html
 │   └── profile.html
 ├── assets/
