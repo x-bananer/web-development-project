@@ -1,0 +1,46 @@
+.toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .toggle {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 20;
+    display: block;
+  }
+
+  .toggle__frame {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 52px;
+    border-top: 4px solid var(--border-color);
+    background: #ffffff;
+  }
+
+  .toggle__link {
+    letter-spacing: 1px;
+    font-size: 10px;
+    font-weight: 800;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 14px;
+    min-height: 32px;
+
+    text-transform: uppercase;
+  }
+
+  .toggle__link--active {
+    background: var(--border-color);
+    color: #ffffff;
+  }
+
+  .toggle__link--icon {
+    font-size: 16px;
+    background: var(--pink-color);
+  }
+}

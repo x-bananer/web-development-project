@@ -1,9 +1,12 @@
 @import url('./base/base.css');
 @import url('./base/layout.css');
 @import url('./components/button.css');
-@import url('./components/tabs.css');
 @import url('./components/card.css');
 @import url('./components/pagination.css');
 @import url('./sections/header.css');
 @import url('./sections/hero.css');
 @import url('./sections/sidebar.css');
+@import url('./sections/list.css');
+@import url('./sections/catalog.css');
+@import url('./sections/footer.css');
+@import url('./components/toggle.css');

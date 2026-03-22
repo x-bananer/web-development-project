@@ -1,0 +1,18 @@
+.footer {
+  padding-block: 32px;
+  border-top: 1px solid var(--gray-color);
+}
+
+.footer__text {
+  color: var(--gray-color);
+  font-size: 10px;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding-block: 32px 64px;
+  }
+}

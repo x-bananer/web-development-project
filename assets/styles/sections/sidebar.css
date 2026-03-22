@@ -1,69 +1,93 @@
-.sidebar {
-	padding: 16px;
-	border: 3px solid #000000;
-	border-radius: 6px;
-	background: #F7F5EF;
+.filters {
 }
 
-.sidebar__title {
-	padding-bottom: 14px;
-	font-size: 20px;
-	font-weight: 500;
+.filters__mobile-label {
+  display: none;
 }
 
-.form {
-	display: grid;
-	gap: 14px;
+.filters__box {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 0.5fr;
+  align-items: end;
+  gap: 24px;
+  padding: 32px 24px;
+  border: 4px solid var(--border-color);
+  background: #ffffff;
+  box-shadow: var(--shadow-size) var(--shadow-size) 0 var(--border-color);
 }
 
-.form__row {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 8px;
+.filters__group {
+  display: grid;
+  gap: 8px;
 }
 
-.form__group {
-	display: grid;
-	gap: 2px;
+.filters__label {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
-.form__label {
-	font-size: 12px;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+.filters__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding-inline: 12px;
+  border: 4px solid var(--border-color);
+  background: #ffffff;
 }
 
-.field {
-	position: relative;
-	display: flex;
-	align-items: center;
-	min-height: 46px;
-	padding-inline: 12px;
-	border: 2px solid #000000;
-	border-radius: 4px;
-	background: #FFFFFF;
-	box-shadow: 2px 2px 0 var(--shadow-color);
+.filters__field--yellow {
+  background: var(--yellow-color);
 }
 
-.field__input {
-	width: 100%;
-	color: #000000;
-	font-size: 14px;
+.filters__field--pink {
+  background: var(--pink-color);
 }
 
-.field__input--select {
-	padding-right: 22px;
+.filters__control {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.field__icon {
-	position: absolute;
-	top: 50%;
-	right: 12px;
-	width: 10px;
-	height: 10px;
-	border-right: 2px solid #000000;
-	border-bottom: 2px solid #000000;
-	pointer-events: none;
-	transform: translateY(-65%) rotate(45deg);
+@media (max-width: 1080px) {
+  .filters__box {
+    gap: 16px;
+    padding: 22px 16px;
+  }
+}
+
+@media (max-width: 960px) {
+  .filters__box {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filters__group--search {
+    grid-column: 1 / -1;
+  }
+
+  .filters__button {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .filters__box {
+    gap: 8px;
+  }
+
+  .filters__group {
+    gap: 4px;
+    grid-column: 1 / -1;
+  }
+
+  .filters__field {
+    min-height: 48px;
+  }
+
+  .filters__button {
+    min-height: 48px;
+  }
 }

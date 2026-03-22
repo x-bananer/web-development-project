@@ -1,0 +1,15 @@
+.catalog {
+  padding-top: 52px;
+}
+
+@media (max-width: 960px) {
+  .catalog {
+    padding-top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .catalog {
+    padding-top: 32px;
+  }
+}
