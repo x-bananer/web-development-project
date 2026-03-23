@@ -1,0 +1,24 @@
+[
+  {
+    "id": "arabia",
+    "name": "Metropolia Arabia",
+    "address": "Hameentie 135, Helsinki",
+    "city": "Helsinki",
+    "provider": "Fazer",
+    "lat": 60.2102,
+    "lng": 24.9764,
+    "link": "../index.html",
+    "tags": ["blue", "pink"]
+  },
+  {
+    "id": "taffa",
+    "name": "Aalto Taffa",
+    "address": "Otakaari 22, Espoo",
+    "city": "Espoo",
+    "provider": "Sodexo",
+    "lat": 60.1863,
+    "lng": 24.8267,
+    "link": "../index.html",
+    "tags": ["yellow"]
+  }
+]
