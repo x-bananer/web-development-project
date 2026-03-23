@@ -15,4 +15,8 @@
   .footer {
     padding-block: 32px 64px;
   }
+
+  .footer--map {
+    display: none;
+  }
 }

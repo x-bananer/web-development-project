@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>StudEat Map</title>
+		<link rel="icon" href="../assets/favicon.png" type="image/png" />
+		<link rel="stylesheet" href="../assets/styles/index.css" />
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		/>
+	</head>
+	<body>
+		<header class="header">
+			<div class="header__content layout">
+				<a class="header__logo" href="../index.html">
+					STUD<span class="header__logo-accent">EAT</span>
+				</a>
+
+				<nav class="header__nav">
+					<a class="header__nav-link" href="../index.html"
+						>Restaurants</a
+					>
+					<a
+						class="header__nav-link header__nav-link--active"
+						href="./map.html"
+					>
+						Map View
+					</a>
+					<a class="header__nav-link" href="./favorites.html">
+						My Favorites
+					</a>
+				</nav>
+
+				<button
+					class="button button--square button--icon"
+					type="button"
+				>
+					☻
+				</button>
+			</div>
+		</header>
+
+		<main class="content content--map">
+			<section class="map layout">
+				<div class="map__wrapper">
+					<div class="map__badge">
+						Tap a dining station to see details
+					</div>
+					<div class="map__zoom">
+						<button
+							class="map__zoom-button button button--square"
+							type="button"
+							id="map-zoom-in"
+						>
+							<span class="map__icon">+</span>
+						</button>
+						<button
+							class="map__zoom-button button button--square"
+							type="button"
+							id="map-zoom-out"
+						>
+							<span class="map__icon">−</span>
+						</button>
+					</div>
+					<button
+						class="map__locate-button button button--square"
+						type="button"
+						id="map-locate"
+					>
+						<span class="map__icon">⌖</span>
+					</button>
+					<div class="map__leaflet" id="map"></div>
+
+					<aside class="map__card" id="map-card">
+						<article class="card">
+							<div class="card__media card__media--arabia">
+								<button
+									class="map__close button button--square"
+									type="button"
+									id="map-close"
+								>
+									<span class="map__icon">✖</span>
+								</button>
+
+								<div class="card__badges">
+									<span
+										class="card__badge card__badge--yellow"
+									>
+										Helsinki
+									</span>
+									<span class="card__badge card__badge--pink">
+										Fazer
+									</span>
+								</div>
+							</div>
+
+							<div class="card__body">
+								<h1 class="card__title" id="map-title">
+									Metropolia Arabia
+								</h1>
+								<p class="card__address" id="map-address">
+									Hameentie 135, Helsinki
+								</p>
+								<div class="card__tags">
+									<span
+										class="card__tag card__tag--blue card__tag--leaf"
+									></span>
+									<span
+										class="card__tag card__tag--pink card__tag--pin"
+									></span>
+								</div>
+							</div>
+
+							<a class="button button--view" href="../index.html">
+								View Menu
+							</a>
+						</article>
+					</aside>
+				</div>
+			</section>
+		</main>
+
+		<footer class="footer footer--map layout">
+			<p class="footer__text">© 2026 Kseniia Shlenskaia</p>
+		</footer>
+
+		<nav class="toggle">
+			<div class="toggle__frame">
+				<a class="toggle__link" href="../index.html">Cards</a>
+				<a class="toggle__link toggle__link--active" href="./map.html">
+					Map View
+				</a>
+				<a
+					class="toggle__link toggle__link--icon"
+					href="./favorites.html"
+				>
+					♥
+				</a>
+			</div>
+		</nav>
+
+		<script
+			src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+			integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+			crossorigin=""
+		></script>
+		<script src="../main.js"></script>
+	</body>
+</html>

@@ -17,3 +17,9 @@
     padding-block: 20px 40px;
   }
 }
+
+@media (max-width: 768px) {
+  .content.content--map {
+    padding: 0;
+  }
+}

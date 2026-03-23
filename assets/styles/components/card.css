@@ -113,8 +113,8 @@
   min-width: 48px;
   height: 48px;
   border: 4px solid var(--border-color);
-  background: #FFFFFF;
-  color: #BF2900;
+  background: #ffffff;
+  color: var(--red-color);
   font-size: 28px;
   line-height: 1;
 
