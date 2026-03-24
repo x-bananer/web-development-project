@@ -45,7 +45,7 @@
 			<section class="catalog layout">
 				<ul class="list">
 					<li class="list__item">
-						<article class="card">
+						<article class="card" data-restaurant-url="./restaurant.html">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -81,7 +81,7 @@
 					</li>
 
 					<li class="list__item">
-						<article class="card">
+						<article class="card" data-restaurant-url="./restaurant.html">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -135,5 +135,25 @@
 				</a>
 			</div>
 		</nav>
+
+		<script>
+			const favoriteItems = document.querySelectorAll('.list__item');
+
+			favoriteItems.forEach((item) => {
+				item.addEventListener('click', (event) => {
+					if (event.target.closest('.card__favorite-icon')) {
+						return;
+					}
+
+					const card = item.querySelector('.card[data-restaurant-url]');
+
+					if (!card) {
+						return;
+					}
+
+					window.location.href = card.dataset.restaurantUrl;
+				});
+			});
+		</script>
 	</body>
 </html>

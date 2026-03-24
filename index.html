@@ -107,7 +107,7 @@
 			<section class="catalog layout">
 				<ul class="list">
 					<li class="list__item">
-						<article class="card">
+						<article class="card" data-restaurant-url="./pages/restaurant.html">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -135,13 +135,13 @@
 								</div>
 							</div>
 
-							<a class="button button--view" href="./index.html"
-								>View Menu</a
-							>
+							<button class="button button--view" type="button">
+								View Menu
+							</button>
 						</article>
 					</li>
 					<li class="list__item">
-						<article class="card">
+						<article class="card" data-restaurant-url="./pages/restaurant.html">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -169,14 +169,14 @@
 								</div>
 							</div>
 
-							<a class="button button--view" href="./index.html"
-								>View Menu</a
-							>
+							<button class="button button--view" type="button">
+								View Menu
+							</button>
 						</article>
 					</li>
 
 					<li class="list__item">
-						<article class="card">
+						<article class="card" data-restaurant-url="./pages/restaurant.html">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -199,14 +199,14 @@
 								</div>
 							</div>
 
-							<a class="button button--view" href="./index.html"
-								>View Menu</a
-							>
+							<button class="button button--view" type="button">
+								View Menu
+							</button>
 						</article>
 					</li>
 
 					<li class="list__item">
-						<article class="card">
+						<article class="card" data-restaurant-url="./pages/restaurant.html">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -229,9 +229,9 @@
 								</div>
 							</div>
 
-							<a class="button button--view" href="./index.html"
-								>View Menu</a
-							>
+							<button class="button button--view" type="button">
+								View Menu
+							</button>
 						</article>
 					</li>
 				</ul>
@@ -285,5 +285,21 @@
 				</a>
 			</div>
 		</nav>
+
+		<script>
+			const restaurantItems = document.querySelectorAll('.list__item');
+
+			restaurantItems.forEach((item) => {
+				item.addEventListener('click', () => {
+					const card = item.querySelector('.card[data-restaurant-url]');
+
+					if (!card) {
+						return;
+					}
+
+					window.location.href = card.dataset.restaurantUrl;
+				});
+			});
+		</script>
 	</body>
 </html>

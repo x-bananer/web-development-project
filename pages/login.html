@@ -73,7 +73,6 @@
 										name="email"
 										placeholder="email@student.fi"
 										autocomplete="email"
-										required
 									/>
 								</span>
 							</label>
@@ -89,7 +88,6 @@
 										type="password"
 										name="password"
 										autocomplete="current-password"
-										required
 									/>
 								</span>
 							</label>
@@ -132,7 +130,6 @@
 										name="name"
 										placeholder="your name"
 										autocomplete="name"
-										required
 									/>
 								</span>
 							</label>
@@ -146,7 +143,6 @@
 										name="signup-email"
 										placeholder="email@student.fi"
 										autocomplete="email"
-										required
 									/>
 								</span>
 							</label>
@@ -162,7 +158,6 @@
 										name="signup-password"
 										placeholder="create password"
 										autocomplete="new-password"
-										required
 									/>
 								</span>
 							</label>
@@ -178,7 +173,6 @@
 										name="signup-password-repeat"
 										placeholder="repeat password"
 										autocomplete="new-password"
-										required
 									/>
 								</span>
 							</label>
@@ -188,7 +182,6 @@
 									class="auth__checkbox"
 									type="checkbox"
 									name="terms"
-									required
 								/>
 								<span class="auth__check-box"></span>
 								<span class="auth__check-text"
@@ -243,6 +236,7 @@
 			const signupForm = document.getElementById('signup-form');
 			const loginSwitch = document.getElementById('login-switch');
 			const signupSwitch = document.getElementById('signup-switch');
+			const profilePageUrl = './profile.html';
 
 			const showLogin = () => {
 				loginTab?.classList.add('auth__tab--active');
@@ -262,6 +256,14 @@
 			signupTab?.addEventListener('click', showSignup);
 			loginSwitch?.addEventListener('click', showLogin);
 			signupSwitch?.addEventListener('click', showSignup);
+			loginForm?.addEventListener('submit', (event) => {
+				event.preventDefault();
+				window.location.href = profilePageUrl;
+			});
+			signupForm?.addEventListener('submit', (event) => {
+				event.preventDefault();
+				window.location.href = profilePageUrl;
+			});
 		</script>
 	</body>
 </html>

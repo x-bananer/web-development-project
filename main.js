@@ -68,11 +68,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 		const title = document.getElementById('map-title');
 		const address = document.getElementById('map-address');
 		const tags = document.getElementById('map-tags');
-		const link = document.getElementById('map-link');
 		const media = panel.querySelector('.card__media');
 		const badges = panel.querySelectorAll('.card__badge');
 
-		if (!title || !address || !media || !tags || !link) {
+		if (!title || !address || !media || !tags) {
 			return;
 		}
 
@@ -100,7 +99,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 			tags.append(tag);
 		}
 
-		link.href = place.link;
 	};
 
 	const redrawMarkers = () => {
