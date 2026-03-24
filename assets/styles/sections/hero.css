@@ -45,8 +45,12 @@
   display: block;
 }
 
-.hero__title-line--accent {
+.hero__title-line--green {
   color: var(--green-color);
+}
+
+.hero__title-line--pink {
+  color: var(--pink-color);
 }
 
 .hero__description {

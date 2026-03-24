@@ -1,6 +1,9 @@
 /* global L */
 
 const HELSINKI_CENTER = [60.1699, 24.9384];
+const scriptUrl = new URL(import.meta.url);
+const placesUrl = new URL('./assets/data/places.json', scriptUrl);
+const pinIconUrl = new URL('./assets/icons/pin.svg', scriptUrl);
 
 document.addEventListener('DOMContentLoaded', async () => {
 	const mapElement = document.getElementById('map');
@@ -12,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 	let places = [];
 
 	try {
-		const response = await fetch('../assets/data/places.json');
+		const response = await fetch(placesUrl);
 		places = await response.json();
 	} catch {
 		return;
@@ -49,7 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 			html: `
 				<div class="map__marker map__marker--${color}">
 					${label}
-					<img class="map__marker-icon" src="../assets/icons/pin.svg" alt="" />
+					<img class="map__marker-icon" src="${pinIconUrl}" alt="" />
 				</div>
 			`,
 			iconSize: [48, 48],
