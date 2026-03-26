@@ -39,6 +39,7 @@
 
 .card.card--favorite .card__unpin-button {
   display: flex;
+  color: #ffffff;
 }
 
 .card__media {
