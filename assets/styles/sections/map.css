@@ -15,44 +15,11 @@
   min-height: min(80dvh, 920px);
 }
 
-.map__card {
-  position: absolute;
-  top: 32px;
-  right: 32px;
-  z-index: 1200;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: all 0.15s ease;
-
-  width: 300px;
-}
-
-.map__card.is-open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.map__close {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  z-index: 2;
-  font-size: 20px;
-  box-shadow: none;
-}
-
-.map__close:hover {
-  transform: none;
-  box-shadow: none;
-}
-
 .map__badge {
   position: absolute;
   top: 14px;
   left: 14px;
-  z-index: 450;
+  z-index: 800;
   max-width: 200px;
   padding: 10px 14px;
   border: 4px solid var(--border-color);
@@ -72,7 +39,7 @@
   position: absolute;
   bottom: 14px;
   left: 14px;
-  z-index: 1100;
+  z-index: 850;
   display: flex;
   flex-direction: column;
 }
@@ -103,7 +70,7 @@
   position: absolute;
   bottom: 14px;
   right: 14px;
-  z-index: 1100;
+  z-index: 850;
   background: var(--blue-color);
 }
 
@@ -181,14 +148,6 @@
   .map,
   .map__leaflet {
     min-height: 68dvh;
-  }
-
-  .map__card {
-    top: auto;
-    right: 14px;
-    bottom: 14px;
-    left: 14px;
-    width: auto;
   }
 
   .map__badge {

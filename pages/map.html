@@ -40,7 +40,7 @@
 			<section class="map layout">
 				<div class="map__wrapper">
 					<div class="map__badge">
-						Tap a dining station to see details
+						Tap a dining station to open menu
 					</div>
 					<div class="map__zoom">
 						<button
@@ -66,40 +66,6 @@
 						<span class="map__icon">⌖</span>
 					</button>
 					<div class="map__leaflet" id="map"></div>
-
-					<aside class="map__card" id="map-card">
-						<article class="card" id="map-restaurant-card">
-							<div class="card__media">
-								<button
-									class="map__close button button--square"
-									type="button"
-									id="map-close"
-								>
-									<span class="map__icon">✖</span>
-								</button>
-
-								<div class="card__badges">
-									<span
-										class="card__badge card__badge--yellow"
-									></span>
-									<span class="card__badge"></span>
-								</div>
-							</div>
-
-							<div class="card__body">
-								<h1 class="card__title" id="map-title"></h1>
-								<p class="card__address" id="map-address"></p>
-								<div class="card__tags" id="map-tags"></div>
-							</div>
-
-							<button
-								class="button button--card"
-								type="button"
-							>
-								View Menu
-							</button>
-						</article>
-					</aside>
 				</div>
 			</section>
 		</main>
@@ -116,6 +82,232 @@
 				</a>
 			</div>
 		</nav>
+
+		<div class="modal" id="modal">
+			<div class="modal__dialog">
+				<div class="modal__head">
+					<div class="modal__top">
+						<h2 class="modal__title">
+							Otaniemi Central Hub - Menu
+						</h2>
+						<button
+							class="button button--square modal__close"
+							id="modal-close"
+							type="button"
+						>
+							✕
+						</button>
+					</div>
+					<p class="modal__caption">
+						Undergraduate Center, 2nd Floor
+					</p>
+				</div>
+
+				<div class="modal__tabs">
+					<button class="modal__tab" id="daily-tab" type="button">
+						Today's Menu
+					</button>
+					<button
+						class="modal__tab modal__tab--active"
+						id="weekly-tab"
+						type="button"
+					>
+						Weekly Menu
+					</button>
+				</div>
+
+				<div class="modal__body modal__panel" id="daily-panel">
+					<section class="modal__group">
+						<h3 class="modal__group-title">Chef’s Specials</h3>
+						<ul class="modal__list">
+							<li class="modal__item">
+								<div class="modal__item-wrap">
+									<div class="modal__item-title">
+										<span>Oven-Baked Salmon</span>
+										<div class="modal__meal-tags">
+											<span class="modal__item-tag modal__item-tag--orange">GF</span>
+											<span class="modal__item-tag modal__item-tag--blue">LF</span>
+										</div>
+									</div>
+									<p class="modal__item-description">
+										Served with dill-crushed potatoes and lemon cream sauce.
+									</p>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item">
+								<div class="modal__item-wrap">
+									<div class="modal__item-title">
+										<span>Beef & Potato Hash</span>
+										<div class="modal__meal-tags">
+											<span class="modal__item-tag modal__item-tag--orange">GF</span>
+											<span class="modal__item-tag modal__item-tag--blue">LF</span>
+										</div>
+									</div>
+									<p class="modal__item-description">
+										Traditional Finnish 'Pyttipannu' with fried egg and beetroot.
+									</p>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<div class="modal__note">
+						Dietary keys: GF = gluten free, LF = lactose free, V = vegetarian, VG = vegan.
+						<br />
+						Please confirm ingredient lists with service staff for severe allergies.
+						<br />
+						Prices valid with a valid student ID card.
+					</div>
+				</div>
+
+				<div class="modal__body modal__panel modal__panel--active" id="weekly-panel">
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Monday</h3>
+							<span class="modal__group-subtitle">Oct 23</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Butter Chicken</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--orange">GF</span>
+										<span class="modal__item-tag modal__item-tag--blue">LF</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Falafel Platter</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--pink">V</span>
+										<span class="modal__item-tag modal__item-tag--orange">GF</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Tuesday</h3>
+							<span class="modal__group-subtitle">Oct 24</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Beef Stroganoff</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--blue">LF</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Mushroom Risotto</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--orange">GF</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Wednesday</h3>
+							<span class="modal__group-subtitle">Oct 25</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Baked Salmon</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--orange">GF</span>
+										<span class="modal__item-tag modal__item-tag--blue">LF</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Tofu Stir-Fry</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--pink">V</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Thursday</h3>
+							<span class="modal__group-subtitle">Oct 26</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Chicken Noodles</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--blue">LF</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Veggie Lasagna</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--pink">V</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Friday</h3>
+							<span class="modal__group-subtitle">Oct 27</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Fish and Potatoes</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--orange">GF</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Bean Chili</span>
+									<div class="modal__meal-tags">
+										<span class="modal__item-tag modal__item-tag--pink">V</span>
+										<span class="modal__item-tag modal__item-tag--orange">GF</span>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<div class="modal__note">
+						Dietary keys: GF = gluten free, LF = lactose free, V = vegetarian, VG = vegan. Please confirm ingredient lists with service staff for severe allergies. Prices valid with a valid student ID card.
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<script
 			src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -137,13 +329,16 @@
 				}
 
 				if (places.length > 0) {
-					const panel = document.getElementById('map-card');
-					const closeButton = document.getElementById('map-close');
 					const locateButton = document.getElementById('map-locate');
 					const zoomInButton = document.getElementById('map-zoom-in');
 					const zoomOutButton = document.getElementById('map-zoom-out');
-					const mapRestaurantCard = document.getElementById('map-restaurant-card');
-					const restaurantPageUrl = './restaurant.html';
+					const menuModal = document.getElementById('modal');
+					const menuModalClose = document.getElementById('modal-close');
+					const dailyTab = document.getElementById('daily-tab');
+					const weeklyTab = document.getElementById('weekly-tab');
+					const dailyPanel = document.getElementById('daily-panel');
+					const weeklyPanel = document.getElementById('weekly-panel');
+					let pageScrollY = 0;
 
 					const map = L.map(mapElement, {
 						zoomControl: false,
@@ -178,46 +373,6 @@
 						});
 					};
 
-					const updateCard = (place) => {
-						if (!panel) {
-							return;
-						}
-
-						const title = document.getElementById('map-title');
-						const address = document.getElementById('map-address');
-						const tags = document.getElementById('map-tags');
-						const media = panel.querySelector('.card__media');
-						const badges = panel.querySelectorAll('.card__badge');
-
-						if (!title || !address || !media || !tags) {
-							return;
-						}
-
-						title.textContent = place.name;
-						address.textContent = place.address;
-						media.className = 'card__media';
-
-						if (badges[0]) {
-							badges[0].textContent = place.city;
-						}
-
-						if (badges[1]) {
-							badges[1].textContent = place.provider;
-							badges[1].className =
-								place.provider === 'Sodexo'
-									? 'card__badge card__badge--blue'
-									: 'card__badge card__badge--pink';
-						}
-
-						tags.innerHTML = '';
-
-						for (const color of place.tags || []) {
-							const tag = document.createElement('span');
-							tag.className = `card__tag card__tag--${color}`;
-							tags.append(tag);
-						}
-					};
-
 					const redrawMarkers = () => {
 						for (const place of places) {
 							const marker = markers[place.id];
@@ -228,12 +383,38 @@
 						}
 					};
 
-					const openCard = () => {
-						panel?.classList.add('is-open');
+					const openDailyMenu = () => {
+						dailyTab?.classList.add('modal__tab--active');
+						weeklyTab?.classList.remove('modal__tab--active');
+						dailyPanel?.classList.add('modal__panel--active');
+						weeklyPanel?.classList.remove('modal__panel--active');
+						dailyPanel?.scrollTo(0, 0);
 					};
 
-					const closeCard = () => {
-						panel?.classList.remove('is-open');
+					const openWeeklyMenu = () => {
+						weeklyTab?.classList.add('modal__tab--active');
+						dailyTab?.classList.remove('modal__tab--active');
+						weeklyPanel?.classList.add('modal__panel--active');
+						dailyPanel?.classList.remove('modal__panel--active');
+						weeklyPanel?.scrollTo(0, 0);
+					};
+
+					const openMenuModal = () => {
+						openDailyMenu();
+						menuModal?.scrollTo(0, 0);
+						dailyPanel?.scrollTo(0, 0);
+						weeklyPanel?.scrollTo(0, 0);
+						pageScrollY = window.scrollY;
+						document.body.style.top = `-${pageScrollY}px`;
+						document.body.classList.add('disable-scroll');
+						menuModal?.classList.add('is-open');
+					};
+
+					const closeMenuModal = () => {
+						document.body.classList.remove('disable-scroll');
+						document.body.style.top = '';
+						menuModal?.classList.remove('is-open');
+						window.scrollTo(0, pageScrollY);
 					};
 
 					const selectPlace = (placeId) => {
@@ -246,10 +427,9 @@
 						}
 
 						activePlaceId = place.id;
-						updateCard(place);
 						redrawMarkers();
 						map.flyTo([place.lat, place.lng], 14, {duration: 0.5});
-						openCard();
+						openMenuModal();
 					};
 
 					const setUserLocation = (lat, lng) => {
@@ -344,16 +524,22 @@
 						markers[place.id] = marker;
 					}
 
-					closeButton?.addEventListener('click', () => {
-						closeCard();
+					menuModalClose?.addEventListener('click', () => {
+						closeMenuModal();
 					});
 
-					mapRestaurantCard?.addEventListener('click', (event) => {
-						if (event.target.closest('#map-close')) {
-							return;
+					menuModal?.addEventListener('click', (event) => {
+						if (event.target === menuModal) {
+							closeMenuModal();
 						}
+					});
 
-						window.location.href = restaurantPageUrl;
+					dailyTab?.addEventListener('click', () => {
+						openDailyMenu();
+					});
+
+					weeklyTab?.addEventListener('click', () => {
+						openWeeklyMenu();
 					});
 
 					locateButton?.addEventListener('click', () => {
@@ -379,7 +565,6 @@
 					}
 
 					redrawMarkers();
-					closeCard();
 				}
 			}
 		</script>

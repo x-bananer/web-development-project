@@ -2,7 +2,7 @@
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: 1000;
   align-items: center;
   justify-content: center;
   padding: 24px;
