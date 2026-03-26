@@ -43,16 +43,18 @@
   color: #ffffff;
 }
 
-.button--view {
-  background: var(--border-color);
-  color: #ffffff;
-  font-size: 16px;
+.button--card {
+  background: var(--light-gray-color);
+  color: var(--gray-color);
+  font-size: 12px;
   letter-spacing: 1.6px;
   box-shadow: none;
-  min-height: 56px;
+  min-height: 32px;
+  border-left: none;
+  border-right: none;
 }
 
-.button--view:hover {
+.button--card:hover {
   transform: none;
   box-shadow: none;
 }

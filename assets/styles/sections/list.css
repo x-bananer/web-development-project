@@ -4,6 +4,11 @@
   gap: 32px;
 }
 
+.list__item {
+  display: grid;
+  gap: 12px;
+}
+
 @media (max-width: 1040px) {
   .list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
