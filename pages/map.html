@@ -554,17 +554,8 @@
 						map.zoomOut();
 					});
 
-					if (navigator.permissions) {
-						navigator.permissions
-							.query({name: 'geolocation'})
-							.then((result) => {
-								if (result.state === 'granted') {
-									getUserLocation(false);
-								}
-							});
-					}
-
 					redrawMarkers();
+					getUserLocation(false);
 				}
 			}
 		</script>
