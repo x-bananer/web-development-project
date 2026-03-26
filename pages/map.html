@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>StudEat Map</title>
-		<link rel="icon" href="../assets/favicon.png" type="image/png" />
-		<link rel="stylesheet" href="../assets/styles/index.css" />
+		<link rel="icon" href="../assets/favicon.png" type="image/png">
+		<link rel="stylesheet" href="../assets/styles/index.css">
 		<link
 			rel="stylesheet"
 			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-		/>
+		>
 	</head>
 	<body>
 		<header class="header">
@@ -40,7 +40,7 @@
 		</header>
 
 		<main class="content content--map">
-			<section class="map layout">
+			<div class="map layout">
 				<div class="map__wrapper">
 					<div class="map__badge">
 						Tap a dining station to open menu
@@ -70,7 +70,7 @@
 					</button>
 					<div class="map__leaflet" id="map"></div>
 				</div>
-			</section>
+			</div>
 		</main>
 
 		<footer class="footer footer--map layout">
@@ -611,7 +611,7 @@
 							html: `
 								<div class="map__marker map__marker--${color}">
 									${label}
-									<img class="map__marker-icon" src="${pinIconUrl}" alt="" />
+									<img class="map__marker-icon" src="${pinIconUrl}" alt="">
 								</div>
 							`,
 							iconSize: [48, 48],

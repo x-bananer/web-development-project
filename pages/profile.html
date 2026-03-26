@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>StudEat Profile</title>
-		<link rel="icon" href="../assets/favicon.png" type="image/png" />
-		<link rel="stylesheet" href="../assets/styles/index.css" />
+		<link rel="icon" href="../assets/favicon.png" type="image/png">
+		<link rel="stylesheet" href="../assets/styles/index.css">
 	</head>
 	<body>
 		<header class="header">
@@ -40,19 +40,22 @@
 			</section>
 
 			<section class="profile layout">
+				<h2 class="visually-hidden">Profile settings</h2>
 				<div class="profile__media">
 					<div class="profile__avatar" id="profile-avatar">
 						<img
 							class="profile__avatar-image"
 							id="profile-avatar-image"
-						/>
+							src="../assets/favicon.png"
+							alt="Profile avatar"
+						>
 					</div>
 					<input
 						id="profile-photo-input"
 						type="file"
 						accept="image/*"
 						hidden
-					/>
+					>
 					<button
 						class="button profile__upload"
 						id="profile-upload"
@@ -73,7 +76,7 @@
 								type="text"
 								name="username"
 								placeholder="Username"
-							/>
+							>
 						</span>
 					</label>
 
@@ -85,7 +88,7 @@
 								type="email"
 								name="email"
 								placeholder="Email"
-							/>
+							>
 						</span>
 					</label>
 
@@ -97,7 +100,7 @@
 								type="password"
 								name="password"
 								placeholder="Password"
-							/>
+							>
 						</span>
 					</label>
 
