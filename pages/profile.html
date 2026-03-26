@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="fi">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>StudEat Profile</title>
+		<link rel="icon" href="../assets/favicon.png" type="image/png" />
+		<link rel="stylesheet" href="../assets/styles/index.css" />
+	</head>
+	<body>
+		<header class="header">
+			<div class="header__content layout">
+				<a class="header__logo" href="../index.html">
+					STUD<span class="header__logo-accent">EAT</span>
+				</a>
+
+				<nav class="header__nav">
+					<a class="header__nav-link" href="../index.html">Restaurants</a>
+					<a class="header__nav-link" href="./map.html">Map View</a>
+				</nav>
+
+				<a class="button button--square button--icon" href="./profile.html">
+					☻
+				</a>
+			</div>
+		</header>
+
+		<main class="content">
+			<section class="hero layout">
+				<div class="hero__main hero__main--wide">
+					<h1 class="hero__title">
+						<span class="hero__title-line">Settings</span>
+					</h1>
+				</div>
+			</section>
+
+			<section class="profile layout">
+				<div class="profile__media">
+					<div class="profile__avatar" id="profile-avatar">
+						<img class="profile__avatar-image" id="profile-avatar-image" />
+					</div>
+					<input
+						id="profile-photo-input"
+						type="file"
+						accept="image/*"
+						hidden
+					/>
+					<button class="button profile__upload" id="profile-upload" type="button">
+						Upload Photo
+					</button>
+				</div>
+
+				<form class="profile__form">
+					<label class="filters__group profile__field profile__field--wide">
+						<span class="filters__label">Username</span>
+						<span class="filters__field">
+							<input
+								class="filters__control"
+								type="text"
+								name="username"
+								placeholder="Username"
+							/>
+						</span>
+					</label>
+
+					<label class="filters__group profile__field">
+						<span class="filters__label">Email</span>
+						<span class="filters__field">
+							<input
+								class="filters__control"
+								type="email"
+								name="email"
+								placeholder="Email"
+							/>
+						</span>
+					</label>
+
+					<label class="filters__group profile__field">
+						<span class="filters__label">Password</span>
+						<span class="filters__field">
+							<input
+								class="filters__control"
+								type="password"
+								name="password"
+								placeholder="Password"
+							/>
+						</span>
+					</label>
+
+					<button class="button profile__submit" type="submit">
+						Update Details
+					</button>
+				</form>
+			</section>
+		</main>
+
+		<footer class="footer layout">
+			<p class="footer__text">© 2026 Kseniia Shlenskaia</p>
+		</footer>
+
+		<script>
+			const profileUploadButton = document.getElementById('profile-upload');
+			const profilePhotoInput = document.getElementById('profile-photo-input');
+			const profileAvatar = document.getElementById('profile-avatar');
+			const profileAvatarImage = document.getElementById('profile-avatar-image');
+
+			profileUploadButton?.addEventListener('click', () => {
+				profilePhotoInput?.click();
+			});
+
+			profilePhotoInput?.addEventListener('change', () => {
+				const file = profilePhotoInput.files?.[0];
+
+				if (!file) {
+					return;
+				}
+
+				const imageUrl = URL.createObjectURL(file);
+
+				profileAvatar?.classList.add('profile__avatar--filled');
+				if (profileAvatarImage) {
+					profileAvatarImage.src = imageUrl;
+				}
+			});
+		</script>
+	</body>
+</html>
