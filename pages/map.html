@@ -68,7 +68,7 @@
 					<div class="map__leaflet" id="map"></div>
 
 					<aside class="map__card" id="map-card">
-						<article class="card" data-restaurant-url="./restaurant.html">
+						<article class="card" id="map-restaurant-card">
 							<div class="card__media">
 								<button
 									class="map__close button button--square"
@@ -95,7 +95,6 @@
 							<button
 								class="button button--card"
 								type="button"
-								id="map-link"
 							>
 								View Menu
 							</button>
@@ -143,7 +142,8 @@
 					const locateButton = document.getElementById('map-locate');
 					const zoomInButton = document.getElementById('map-zoom-in');
 					const zoomOutButton = document.getElementById('map-zoom-out');
-					const mapRestaurantCard = panel?.querySelector('.card[data-restaurant-url]');
+					const mapRestaurantCard = document.getElementById('map-restaurant-card');
+					const restaurantPageUrl = './restaurant.html';
 
 					const map = L.map(mapElement, {
 						zoomControl: false,
@@ -353,7 +353,7 @@
 							return;
 						}
 
-						window.location.href = mapRestaurantCard.dataset.restaurantUrl;
+						window.location.href = restaurantPageUrl;
 					});
 
 					locateButton?.addEventListener('click', () => {

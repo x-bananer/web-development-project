@@ -7,9 +7,10 @@
   --blue-color: #6feff0;
   --pink-color: #f6b4d7;
   --green-color: #0e7c82;
+  --dark-green-color: #005E5C;
   --red-color: #bf2900;
   --gray-color: #727272;
-  --light-gray-color: #e0e0e0;
+  --light-gray-color: #A1A1AA;
   --border-color: #111111;
   --layout-width: 1280px;
   --shadow-size: 6px;
@@ -43,6 +44,13 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   color: var(--text-color);
   line-height: 1.42;
+}
+
+body.disable-scroll {
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  width: 100%;
 }
 
 button,

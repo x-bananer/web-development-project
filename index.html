@@ -26,7 +26,10 @@
 					</a>
 				</nav>
 
-				<a class="button button--square button--icon" href="./pages/login.html">
+				<a
+					class="button button--square button--icon"
+					href="./pages/login.html"
+				>
 					☻
 				</a>
 			</div>
@@ -104,7 +107,7 @@
 			<section class="catalog layout">
 				<ul class="list">
 					<li class="list__item">
-						<article class="card" data-restaurant-url="./pages/restaurant.html">
+						<article class="card">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -132,16 +135,22 @@
 								</div>
 							</div>
 							<span class="card__favorite-label">Make main</span>
-							<button class="button button--square button--icon card__favorite-button" type="button" aria-label="Set as favorite restaurant">
+							<button
+								class="button button--square button--icon card__favorite-button"
+								type="button"
+							>
 								★
 							</button>
-							<button class="button button--card card__unpin-button" type="button" aria-label="Unpin favorite restaurant">
+							<button
+								class="button button--card card__unpin-button"
+								type="button"
+							>
 								UNPIN
 							</button>
 						</article>
 					</li>
 					<li class="list__item">
-						<article class="card" data-restaurant-url="./pages/restaurant.html">
+						<article class="card">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -169,17 +178,23 @@
 								</div>
 							</div>
 							<span class="card__favorite-label">Make main</span>
-							<button class="button button--square button--icon card__favorite-button" type="button" aria-label="Set as favorite restaurant">
+							<button
+								class="button button--square button--icon card__favorite-button"
+								type="button"
+							>
 								★
 							</button>
-							<button class="button button--card card__unpin-button" type="button" aria-label="Unpin favorite restaurant">
+							<button
+								class="button button--card card__unpin-button"
+								type="button"
+							>
 								UNPIN
 							</button>
 						</article>
 					</li>
 
 					<li class="list__item">
-						<article class="card" data-restaurant-url="./pages/restaurant.html">
+						<article class="card">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -202,17 +217,23 @@
 								</div>
 							</div>
 							<span class="card__favorite-label">Make main</span>
-							<button class="button button--square button--icon card__favorite-button" type="button" aria-label="Set as favorite restaurant">
+							<button
+								class="button button--square button--icon card__favorite-button"
+								type="button"
+							>
 								★
 							</button>
-							<button class="button button--card card__unpin-button" type="button" aria-label="Unpin favorite restaurant">
+							<button
+								class="button button--card card__unpin-button"
+								type="button"
+							>
 								UNPIN
 							</button>
 						</article>
 					</li>
 
 					<li class="list__item">
-						<article class="card" data-restaurant-url="./pages/restaurant.html">
+						<article class="card">
 							<div class="card__media">
 								<div class="card__badges">
 									<span
@@ -235,10 +256,16 @@
 								</div>
 							</div>
 							<span class="card__favorite-label">Make main</span>
-							<button class="button button--square button--icon card__favorite-button" type="button" aria-label="Set as favorite restaurant">
+							<button
+								class="button button--square button--icon card__favorite-button"
+								type="button"
+							>
 								★
 							</button>
-							<button class="button button--card card__unpin-button" type="button" aria-label="Unpin favorite restaurant">
+							<button
+								class="button button--card card__unpin-button"
+								type="button"
+							>
 								UNPIN
 							</button>
 						</article>
@@ -289,12 +316,345 @@
 			</div>
 		</nav>
 
+		<div class="modal" id="modal">
+			<div class="modal__dialog">
+				<div class="modal__head">
+					<div class="modal__top">
+						<h2 class="modal__title">
+							Otaniemi Central Hub - Menu
+						</h2>
+						<button
+							class="button button--square modal__close"
+							id="modal-close"
+							type="button"
+						>
+							✕
+						</button>
+					</div>
+					<p class="modal__caption">
+						Undergraduate Center, 2nd Floor
+					</p>
+				</div>
+
+				<div class="modal__tabs">
+					<button class="modal__tab" id="daily-tab" type="button">
+						Daily Menu
+					</button>
+					<button
+						class="modal__tab modal__tab--active"
+						id="weekly-tab"
+						type="button"
+					>
+						Weekly Menu
+					</button>
+				</div>
+
+				<div class="modal__body modal__panel" id="daily-panel">
+					<section class="modal__group">
+						<h3 class="modal__group-title">Chef’s Specials</h3>
+						<ul class="modal__list">
+							<li class="modal__item">
+								<div class="modal__item-wrap">
+									<div class="modal__item-title">
+										<span>Oven-Baked Salmon</span>
+										<div class="modal__meal-tags">
+											<span
+												class="modal__item-tag modal__item-tag--orange"
+												>GF</span
+											>
+											<span
+												class="modal__item-tag modal__item-tag--blue"
+												>LF</span
+											>
+										</div>
+									</div>
+									<p class="modal__item-description">
+										Served with dill-crushed potatoes and
+										lemon cream sauce.
+									</p>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item">
+								<div class="modal__item-wrap">
+									<div class="modal__item-title">
+										<span>Beef & Potato Hash</span>
+										<div class="modal__meal-tags">
+											<span
+												class="modal__item-tag modal__item-tag--orange"
+												>GF</span
+											>
+											<span
+												class="modal__item-tag modal__item-tag--blue"
+												>LF</span
+											>
+										</div>
+									</div>
+									<p class="modal__item-description">
+										Traditional Finnish 'Pyttipannu' with
+										fried egg and beetroot.
+									</p>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<div class="modal__note">
+						Dietary keys: GF = gluten free, LF = lactose free, V =
+						vegetarian, VG = vegan.
+						<br />
+						Please confirm ingredient lists with service staff for
+						severe allergies.
+						<br />
+						Prices valid with a valid student ID card.
+					</div>
+				</div>
+
+				<div
+					class="modal__body modal__panel modal__panel--active"
+					id="weekly-panel"
+				>
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Monday</h3>
+							<span class="modal__group-subtitle">Oct 23</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Butter Chicken</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>GF</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>LF</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Falafel Platter</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>V</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>GF</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Tuesday</h3>
+							<span class="modal__group-subtitle">Oct 24</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Beef Stroganoff</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>LF</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Mushroom Risotto</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>GF</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Wednesday</h3>
+							<span class="modal__group-subtitle">Oct 25</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Baked Salmon</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>GF</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>LF</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Tofu Stir-Fry</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>V</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Thursday</h3>
+							<span class="modal__group-subtitle">Oct 26</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Chicken Noodles</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>LF</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Veggie Lasagna</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>V</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<section class="modal__group">
+						<div class="modal__group-head">
+							<h3 class="modal__group-title">Friday</h3>
+							<span class="modal__group-subtitle">Oct 27</span>
+						</div>
+						<ul class="modal__list">
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Fish and Potatoes</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>GF</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+							<li class="modal__item modal__item--s">
+								<div class="modal__item-title">
+									<span>Bean Chili</span>
+									<div class="modal__meal-tags">
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>V</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>GF</span
+										>
+									</div>
+								</div>
+								<span class="modal__price">2.95€</span>
+							</li>
+						</ul>
+					</section>
+
+					<div class="modal__note">
+						Dietary keys: GF = gluten free, LF = lactose free, V =
+						vegetarian, VG = vegan. Please confirm ingredient lists
+						with service staff for severe allergies. Prices valid
+						with a valid student ID card.
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<script>
 			const restaurantItems = document.querySelectorAll('.list__item');
+			const menuModal = document.getElementById('modal');
+			const menuModalClose = document.getElementById('modal-close');
+			const dailyTab = document.getElementById('daily-tab');
+			const weeklyTab = document.getElementById('weekly-tab');
+			const dailyPanel = document.getElementById('daily-panel');
+			const weeklyPanel = document.getElementById('weekly-panel');
+			let pageScrollY = 0;
+
+			const openMenuModal = () => {
+				openDailyMenu();
+				menuModal?.scrollTo(0, 0);
+				dailyPanel?.scrollTo(0, 0);
+				weeklyPanel?.scrollTo(0, 0);
+				pageScrollY = window.scrollY;
+				document.body.style.top = `-${pageScrollY}px`;
+				document.body.classList.add('disable-scroll');
+				menuModal?.classList.add('is-open');
+			};
+
+			const closeMenuModal = () => {
+				document.body.classList.remove('disable-scroll');
+				document.body.style.top = '';
+				menuModal?.classList.remove('is-open');
+				window.scrollTo(0, pageScrollY);
+			};
+
+			const openDailyMenu = () => {
+				dailyTab?.classList.add('modal__tab--active');
+				weeklyTab?.classList.remove('modal__tab--active');
+				dailyPanel?.classList.add('modal__panel--active');
+				weeklyPanel?.classList.remove('modal__panel--active');
+				dailyPanel?.scrollTo(0, 0);
+			};
+
+			const openWeeklyMenu = () => {
+				weeklyTab?.classList.add('modal__tab--active');
+				dailyTab?.classList.remove('modal__tab--active');
+				weeklyPanel?.classList.add('modal__panel--active');
+				dailyPanel?.classList.remove('modal__panel--active');
+				weeklyPanel?.scrollTo(0, 0);
+			};
 
 			restaurantItems.forEach((item) => {
-				const card = item.querySelector('.card[data-restaurant-url]');
-				const favoriteButton = item.querySelector('.card__favorite-button');
+				const card = item.querySelector('.card');
+				const favoriteButton = item.querySelector(
+					'.card__favorite-button'
+				);
 				const unpinButton = item.querySelector('.card__unpin-button');
 
 				if (!card) {
@@ -305,11 +665,13 @@
 					event.stopPropagation();
 					const list = item.parentElement;
 
-					document.querySelectorAll('.card.card--favorite').forEach((activeCard) => {
-						if (activeCard !== card) {
-							activeCard.classList.remove('card--favorite');
-						}
-					});
+					document
+						.querySelectorAll('.card.card--favorite')
+						.forEach((activeCard) => {
+							if (activeCard !== card) {
+								activeCard.classList.remove('card--favorite');
+							}
+						});
 
 					card.classList.add('card--favorite');
 
@@ -317,19 +679,42 @@
 						list?.prepend(item);
 					}
 
-					console.log(`Set as favorite: ${card.querySelector('.card__title')?.textContent ?? 'Unknown restaurant'}`);
+					console.log(
+						`Set as favorite: ${card.querySelector('.card__title')?.textContent ?? 'Unknown restaurant'}`
+					);
 				});
 
 				unpinButton?.addEventListener('click', (event) => {
 					event.stopPropagation();
 					card.classList.remove('card--favorite');
-					console.log(`Unpin favorite: ${card.querySelector('.card__title')?.textContent ?? 'Unknown restaurant'}`);
+					console.log(
+						`Unpin favorite: ${card.querySelector('.card__title')?.textContent ?? 'Unknown restaurant'}`
+					);
 				});
 
 				card.addEventListener('click', () => {
-					window.location.href = card.dataset.restaurantUrl;
+					openMenuModal();
 				});
 			});
+
+			menuModalClose?.addEventListener('click', () => {
+				closeMenuModal();
+			});
+
+			menuModal?.addEventListener('click', (event) => {
+				if (event.target === menuModal) {
+					closeMenuModal();
+				}
+			});
+
+			dailyTab?.addEventListener('click', () => {
+				openDailyMenu();
+			});
+
+			weeklyTab?.addEventListener('click', () => {
+				openWeeklyMenu();
+			});
 		</script>
+		<script type="module" src="./main.js"></script>
 	</body>
 </html>
