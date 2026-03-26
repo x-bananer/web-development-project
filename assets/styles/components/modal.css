@@ -102,7 +102,7 @@
   display: block;
 }
 
-.modal__group+.modal__group {
+.modal__group + .modal__group {
   margin-top: 18px;
 }
 
@@ -206,7 +206,7 @@
 }
 
 .modal__item-description {
-  color: #52525B;
+  color: #52525b;
   font-size: 14px;
   font-weight: 500;
 }
@@ -216,7 +216,7 @@
   padding: 16px;
   border: 2px solid var(--border-color);
   background: var(--blue-color);
-  color: #005E5C;
+  color: #005e5c;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;

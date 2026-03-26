@@ -15,11 +15,16 @@
 				</a>
 
 				<nav class="header__nav">
-					<a class="header__nav-link" href="../index.html">Restaurants</a>
+					<a class="header__nav-link" href="../index.html"
+						>Restaurants</a
+					>
 					<a class="header__nav-link" href="./map.html">Map View</a>
 				</nav>
 
-				<a class="button button--square button--icon" href="./profile.html">
+				<a
+					class="button button--square button--icon"
+					href="./profile.html"
+				>
 					☻
 				</a>
 			</div>
@@ -37,7 +42,10 @@
 			<section class="profile layout">
 				<div class="profile__media">
 					<div class="profile__avatar" id="profile-avatar">
-						<img class="profile__avatar-image" id="profile-avatar-image" />
+						<img
+							class="profile__avatar-image"
+							id="profile-avatar-image"
+						/>
 					</div>
 					<input
 						id="profile-photo-input"
@@ -45,13 +53,19 @@
 						accept="image/*"
 						hidden
 					/>
-					<button class="button profile__upload" id="profile-upload" type="button">
+					<button
+						class="button profile__upload"
+						id="profile-upload"
+						type="button"
+					>
 						Upload Photo
 					</button>
 				</div>
 
 				<form class="profile__form">
-					<label class="filters__group profile__field profile__field--wide">
+					<label
+						class="filters__group profile__field profile__field--wide"
+					>
 						<span class="filters__label">Username</span>
 						<span class="filters__field">
 							<input
@@ -99,10 +113,15 @@
 		</footer>
 
 		<script>
-			const profileUploadButton = document.getElementById('profile-upload');
-			const profilePhotoInput = document.getElementById('profile-photo-input');
+			const profileUploadButton =
+				document.getElementById('profile-upload');
+			const profilePhotoInput = document.getElementById(
+				'profile-photo-input'
+			);
 			const profileAvatar = document.getElementById('profile-avatar');
-			const profileAvatarImage = document.getElementById('profile-avatar-image');
+			const profileAvatarImage = document.getElementById(
+				'profile-avatar-image'
+			);
 
 			profileUploadButton?.addEventListener('click', () => {
 				profilePhotoInput?.click();
