@@ -144,33 +144,26 @@
   border: 2px solid var(--border-color);
 }
 
-.modal__item--s .modal__item-title {
-  font-size: 18px;
-}
-
-.modal__item--s .modal__price {
-  font-size: 22px;
-}
-
 .modal__item-title {
   display: flex;
   align-items: flex-start;
-  gap: 8px;
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 1;
   text-transform: uppercase;
+  max-width: 360px;
 }
 
 .modal__item-wrap {
   display: grid;
-  gap: 4px;
+  gap: 10px;
 }
 
 .modal__meal-tags {
   display: flex;
   gap: 4px;
+  flex-wrap: wrap;
 }
 
 .modal__item-tag {
@@ -185,7 +178,11 @@
 }
 
 .modal__item-tag--orange {
-  background: var(--red-color);
+  background: var(--orange-color);
+}
+
+.modal__item-tag--yellow {
+  background: var(--yellow-color);
 }
 
 .modal__item-tag--blue {
@@ -202,10 +199,11 @@
   gap: 8px;
   align-self: center;
   flex-shrink: 0;
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 1;
   text-align: right;
+  font-weight: 300;
+  color: var(--gray-color);
 }
 
 .modal__price > span {
@@ -218,7 +216,7 @@
   font-weight: 500;
 }
 
-.modal__note {
+.modal__stub {
   margin-top: 18px;
   padding: 16px;
   border: 2px solid var(--border-color);
@@ -257,31 +255,22 @@
   }
 
   .modal__item-title {
-    font-size: 18px;
     align-items: flex-start;
+    font-size: 16px;
   }
 
   .modal__item {
     padding: 14px;
   }
 
-  .modal__item--s .modal__item-title {
-    font-size: 16px;
-  }
-
   .modal__price {
     gap: 6px;
-    font-size: 12px;
+    font-size: 16px;
     align-self: flex-start;
   }
 
   .modal__price > span {
     min-width: 44px;
-  }
-
-  .modal__item--s .modal__price {
-    font-size: 11px;
-    align-self: center;
   }
 
   .modal__body {
