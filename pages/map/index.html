@@ -4,8 +4,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>StudEat Map</title>
-		<link rel="icon" href="../assets/favicon.png" type="image/png">
-		<link rel="stylesheet" href="../assets/styles/index.css">
+		<link rel="icon" href="../../assets/favicon.png" type="image/png">
+		<link rel="stylesheet" href="../../assets/styles/index.css">
 		<link
 			rel="stylesheet"
 			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -14,17 +14,17 @@
 	<body>
 		<header class="header">
 			<div class="header__content layout">
-				<a class="header__logo" href="../index.html">
+				<a class="header__logo" href="../../index.html">
 					STUD<span class="header__logo-accent">EAT</span>
 				</a>
 
 				<nav class="header__nav">
-					<a class="header__nav-link" href="../index.html"
+					<a class="header__nav-link" href="../../index.html"
 						>Restaurants</a
 					>
 					<a
 						class="header__nav-link header__nav-link--active"
-						href="./map.html"
+						href="../../pages/map/index.html"
 					>
 						Map View
 					</a>
@@ -32,7 +32,7 @@
 
 				<a
 					class="button button--square button--icon"
-					href="./login.html"
+					href="../../pages/login/index.html"
 				>
 					☻
 				</a>
@@ -79,8 +79,8 @@
 
 		<nav class="toggle">
 			<div class="toggle__frame">
-				<a class="toggle__link" href="../index.html">Cards</a>
-				<a class="toggle__link toggle__link--active" href="./map.html">
+				<a class="toggle__link" href="../../index.html">Cards</a>
+				<a class="toggle__link toggle__link--active" href="../../pages/map/index.html">
 					Map View
 				</a>
 			</div>
@@ -530,11 +530,11 @@
 		<script type="module">
 			const HELSINKI_CENTER = [60.1699, 24.9384];
 			const placesUrl = new URL(
-				'../assets/data/places.json',
+				'../../assets/data/places.json',
 				import.meta.url
 			);
 			const pinIconUrl = new URL(
-				'../assets/icons/pin.svg',
+				'../../assets/icons/pin.svg',
 				import.meta.url
 			);
 			const mapElement = document.getElementById('map');
