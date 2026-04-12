@@ -16,15 +16,15 @@
 }
 
 .card.card--favorite {
-  background-color: var(--yellow-color);
+  background-color: var(--pink-color);
 }
 
 .card.card--favorite::before {
-  content: '★';
+  content: '♥';
   position: absolute;
   top: 0px;
   right: 8px;
-  color: var(--yellow-color);
+  color: var(--red-color);
   font-size: 40px;
 }
 
@@ -85,8 +85,8 @@
 }
 
 .card__body {
-  display: grid;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
   gap: 8px;
   padding: 24px 26px;
 }
@@ -111,13 +111,16 @@
   display: flex;
   gap: 8px;
   padding-top: 16px;
+  margin-top: auto;
 }
 
 .card__tag {
   position: relative;
   display: inline-block;
-  width: 34px;
-  height: 34px;
+  padding: 4px 8px;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
   border: 2px solid var(--border-color);
 }
 
@@ -152,13 +155,13 @@
 .card__favorite-button {
   position: absolute;
   right: -4px;
-  bottom: -4px;
+  top: -4px;
   width: 60px;
   height: 60px;
   padding: 0;
   background: var(--pink-color);
-  color: var(--yellow-color);
-  font-size: 40px;
+  color: var(--red-color);
+  font-size: 32px;
 }
 
 .card__favorite-button:hover {
