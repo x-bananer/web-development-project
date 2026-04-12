@@ -9,6 +9,15 @@
   gap: 12px;
 }
 
+.list__stub {
+  grid-column: 1 / -1;
+  padding: 32px 24px;
+  text-align: center;
+  color: #8a8a8a;
+  font-size: 24px;
+  font-weight: 700;
+}
+
 @media (max-width: 1040px) {
   .list {
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -58,12 +58,13 @@
 			</section>
 
 			<div class="filters layout">
-				<form class="filters__box">
+				<form class="filters__box" id="filters">
 					<p class="filters__mobile-label">Filters</p>
 					<label class="filters__group filters__group--search">
-						<span class="filters__label">Search Station</span>
+						<span class="filters__label">Search restaurant</span>
 						<span class="filters__field">
 							<input
+								id="filter-search"
 								class="filters__control"
 								type="text"
 								placeholder="Enter restaurant name..."
@@ -72,29 +73,24 @@
 					</label>
 
 					<label class="filters__group">
-						<span class="filters__label">Primary City</span>
+						<span class="filters__label">City</span>
 						<span class="filters__field filters__field--yellow">
-							<select class="filters__control">
-								<option>Helsinki</option>
-								<option>Espoo</option>
-								<option>Vantaa</option>
+							<select class="filters__control" id="filter-city">
+								<option value="">All Cities</option>
 							</select>
 						</span>
 					</label>
 
 					<label class="filters__group">
-						<span class="filters__label">Provider</span>
+						<span class="filters__label">Company</span>
 						<span class="filters__field filters__field--pink">
-							<select class="filters__control">
-								<option>All Providers</option>
-								<option>Fazer</option>
-								<option>Sodexo</option>
-								<option>Unicafe</option>
+							<select class="filters__control" id="filter-company">
+								<option value="">All Companies</option>
 							</select>
 						</span>
 					</label>
 
-					<button class="filters__button button button--reset">
+					<button class="filters__button button button--reset" type="reset">
 						Reset
 					</button>
 				</form>

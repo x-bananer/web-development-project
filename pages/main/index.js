@@ -1,9 +1,17 @@
 // Restaurants
 const BASE_API_URL = 'https://media2.edu.metropolia.fi/restaurant';
 
-const createRestaurantCard = (r, colors) => {
+let allRestaurants = [];
+let cities = [];
+let companies = [];
+
+const filterSearch = document.querySelector('#filter-search');
+const filterCity = document.querySelector('#filter-city');
+const filterCompany = document.querySelector('#filter-company');
+const filtersForm = document.querySelector('#filters');
+
+const createRestaurantCard = (r) => {
 	const li = document.createElement('li');
-	const randomColor = colors[Math.floor(Math.random() * colors.length)];
 
 	li.classList.add('list__item');
 	li.innerHTML = `
@@ -24,7 +32,7 @@ const createRestaurantCard = (r, colors) => {
 					${r.address}
 				</p>
 				<div class="card__tags">
-					<span class="card__tag card__tag--${randomColor}">
+					<span class="card__tag card__tag--${r.cardColor}">
 						${r.company}
 					</span>
 				</div>
@@ -81,20 +89,93 @@ const fetchRestaurants = async () => {
 	try {
 		const res = await fetch(`${BASE_API_URL}/api/v1/restaurants`);
 		const data = await res.json();
-
-		const cardList = document.querySelector('#cards-list');
 		const colors = ['yellow', 'pink'];
 
-		data.forEach((r) => {
-			const li = createRestaurantCard(r, colors);
-			cardList.appendChild(li);
+		allRestaurants = data.map((restaurant) => ({
+			...restaurant,
+			cardColor: colors[Math.floor(Math.random() * colors.length)],
+		}));
+
+		cities = [...new Set(allRestaurants.map((restaurant) => restaurant.city))].sort();
+		companies = [...new Set(allRestaurants.map((restaurant) => restaurant.company))].sort();
+
+		cities.forEach((city) => {
+			const option = document.createElement('option');
+			option.value = city;
+			option.textContent = city;
+			filterCity?.appendChild(option);
 		});
+
+		companies.forEach((company) => {
+			const option = document.createElement('option');
+			option.value = company;
+			option.textContent = company;
+			filterCompany?.appendChild(option);
+		});
+
+		updateRestaurantList();
 	} catch (err) {
 		console.error(err);
 	}
 };
 
+const searchRestaurants = ({search = '', city = '', company = ''} = {}) => {
+	const normalizedSearch = search.trim().toLowerCase();
+
+	return allRestaurants.filter((restaurant) => {
+		let matchesSearch = true;
+
+		if (normalizedSearch) {
+			const name = restaurant.name.toLowerCase();
+			const address = restaurant.address.toLowerCase();
+			const restaurantCity = restaurant.city.toLowerCase();
+			const restaurantCompany = restaurant.company.toLowerCase();
+
+			matchesSearch =
+				name.includes(normalizedSearch) ||
+				address.includes(normalizedSearch) ||
+				restaurantCity.includes(normalizedSearch) ||
+				restaurantCompany.includes(normalizedSearch);
+		}
+
+		const matchesCity = !city || restaurant.city === city;
+		const matchesCompany = !company || restaurant.company === company;
+
+		return matchesSearch && matchesCity && matchesCompany;
+	});
+};
+
+const updateRestaurantList = () => {
+	const filteredRestaurants = searchRestaurants({
+		search: filterSearch?.value || '',
+		city: filterCity?.value || '',
+		company: filterCompany?.value || '',
+	});
+	const cardList = document.querySelector('#cards-list');
+
+	if (!cardList) return;
+
+	cardList.innerHTML = '';
+
+	if (filteredRestaurants.length === 0) {
+		cardList.innerHTML = '<li class="list__stub">Nothing found...</li>';
+		return;
+	}
+
+	filteredRestaurants.forEach((restaurant) => {
+		const li = createRestaurantCard(restaurant);
+		cardList.appendChild(li);
+	});
+};
+
 fetchRestaurants();
+
+filterSearch?.addEventListener('input', updateRestaurantList);
+filterCity?.addEventListener('change', updateRestaurantList);
+filterCompany?.addEventListener('change', updateRestaurantList);
+filtersForm?.addEventListener('reset', () => {
+	setTimeout(updateRestaurantList, 0);
+});
 
 // Modal
 const menuModal = document.getElementById('modal');
