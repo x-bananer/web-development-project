@@ -10,6 +10,7 @@ const filterSearch = document.querySelector('#filter-search');
 const filterCity = document.querySelector('#filter-city');
 const filterCompany = document.querySelector('#filter-company');
 const filtersForm = document.querySelector('#filters');
+const cardsList = document.querySelector('#cards-list');
 
 const createRestaurantCard = (r) => {
     const li = document.createElement('li');
@@ -87,6 +88,10 @@ const addCardEvents = (li, restaurant) => {
 };
 
 const fetchRestaurants = async () => {
+    if (cardsList) {
+        cardsList.innerHTML = '<li class="list__stub">Loading....</li>';
+    }
+
     try {
         const res = await fetch(`${BASE_API_URL}/api/v1/restaurants`);
         const data = await res.json();
@@ -152,7 +157,7 @@ const updateRestaurantList = () => {
         city: filterCity?.value || '',
         company: filterCompany?.value || '',
     });
-    const cardList = document.querySelector('#cards-list');
+    const cardList = cardsList;
 
     if (!cardList) return;
 
@@ -212,14 +217,18 @@ const getTodayDate = () => {
     return `${days[today.getDay()]} ${today.getDate()} ${months[today.getMonth()]}`;
 };
 
-const getDietTags = (dietsText) => {
+const getDietTags = (dietsValue) => {
     let tags = '';
 
-    if (!dietsText) {
+    if (!dietsValue) {
         return tags;
     }
 
-    const dietList = dietsText.split(',');
+    const dietList = Array.isArray(dietsValue)
+        ? dietsValue
+        : typeof dietsValue === 'string'
+            ? dietsValue.split(',')
+            : [];
 
     dietList.forEach((diet, index) => {
         let color = 'yellow';
@@ -236,7 +245,7 @@ const getDietTags = (dietsText) => {
             color = 'orange';
         }
 
-        tags += `<span class="modal__item-tag modal__item-tag--${color}">${diet.trim()}</span>`;
+        tags += `<span class="modal__item-tag modal__item-tag--${color}">${String(diet).trim()}</span>`;
     });
 
     return tags;
@@ -250,9 +259,11 @@ const renderDailyMenu = (courses) => {
     if (!title || !list) return;
 
     title.textContent = getTodayDate();
+    title.hidden = false;
     list.innerHTML = '';
 
     if (!courses || courses.length === 0) {
+        title.hidden = true;
         list.innerHTML = '<li class="list__stub">Nothing found...</li>';
         return;
     }
@@ -286,7 +297,9 @@ const renderWeeklyMenu = (days) => {
     if (!weeklyPanel) return;
 
     if (!days || days.length === 0) {
-        weeklyPanel.innerHTML = '<div class="modal__stub">Nothing found...</div>';
+        weeklyPanel.innerHTML = `
+            <div class="modal__stub">Nothing found...</div>
+            ${getModalAccentMarkup()}`;
         return;
     }
 
@@ -328,10 +341,7 @@ const renderWeeklyMenu = (days) => {
             </section>`;
     });
 
-    weeklyPanel.innerHTML += `
-        <div class="modal__stub">
-            Dietary keys: G = gluten free, L = lactose free, M = milk free, VL = low lactose. Please confirm ingredient lists with service staff for severe allergies.
-        </div>`;
+    weeklyPanel.innerHTML += getModalAccentMarkup();
 
     formatMenuPrices();
 };
@@ -355,6 +365,7 @@ const loadDailyMenu = async () => {
 
     if (title) {
         title.textContent = getTodayDate();
+        title.hidden = false;
     }
 
     if (list) {
@@ -369,6 +380,9 @@ const loadDailyMenu = async () => {
         console.error(err);
 
         if (list) {
+            if (title) {
+                title.hidden = true;
+            }
             list.innerHTML = '<li class="list__stub">Nothing found...</li>';
         }
     }
@@ -377,7 +391,9 @@ const loadDailyMenu = async () => {
 const loadWeeklyMenu = async () => {
     if (!currentRestaurantId || !weeklyPanel) return;
 
-    weeklyPanel.innerHTML = '<div class="modal__stub">Loading...</div>';
+    weeklyPanel.innerHTML = `
+        <div class="modal__stub">Loading...</div>
+        ${getModalAccentMarkup()}`;
 
     try {
         const res = await fetch(`${BASE_API_URL}/api/v1/restaurants/weekly/${currentRestaurantId}/en`);
@@ -385,9 +401,16 @@ const loadWeeklyMenu = async () => {
         renderWeeklyMenu(data.days);
     } catch (err) {
         console.error(err);
-        weeklyPanel.innerHTML = '<div class="modal__stub">Nothing found...</div>';
+        weeklyPanel.innerHTML = `
+            <div class="modal__stub">Nothing found...</div>
+            ${getModalAccentMarkup()}`;
     }
 };
+
+const getModalAccentMarkup = () => `
+    <div class="modal__accent">
+        Dietary keys: A = allergen information available, G = gluten free, ILM = low lactose and milk free, Veg = vegan, VS = vegan suitable, L = lactose free, M = milk free, VL = low lactose. Please confirm ingredient lists with service staff for severe allergies.
+    </div>`;
 
 const openMenuModal = (id) => {
     currentRestaurantId = id;
