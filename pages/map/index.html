@@ -10,6 +10,7 @@
 			rel="stylesheet"
 			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
 		>
+		<script src="./index.js" defer></script>
 	</head>
 	<body>
 		<header class="header">
@@ -20,7 +21,7 @@
 
 				<nav class="header__nav">
 					<a class="header__nav-link" href="../../index.html"
-						>Restaurants</a
+						>List view</a
 					>
 					<a
 						class="header__nav-link header__nav-link--active"
@@ -79,7 +80,7 @@
 
 		<nav class="toggle">
 			<div class="toggle__frame">
-				<a class="toggle__link" href="../../index.html">Cards</a>
+				<a class="toggle__link" href="../../index.html">List view</a>
 				<a class="toggle__link toggle__link--active" href="../../pages/map/index.html">
 					Map View
 				</a>
@@ -193,7 +194,7 @@
 						</ul>
 					</section>
 
-					<div class="modal__note">
+					<div class="modal__accent">
 						Dietary keys: A = allergen information available, G = gluten free, ILM = low lactose and milk free, Veg = vegan, VS = vegan suitable, L = lactose free, M = milk free, VL = low lactose.
 						Please confirm ingredient lists with service staff for severe allergies.
 					</div>
@@ -518,7 +519,7 @@
 						</ul>
 					</section>
 
-					<div class="modal__note">
+					<div class="modal__accent">
 						Dietary keys: A = allergen information available, G = gluten free, ILM = low lactose and milk free, Veg = vegan, VS = vegan suitable, L = lactose free, M = milk free, VL = low lactose.
 						Please confirm ingredient lists with service staff for severe allergies.
 					</div>
@@ -527,287 +528,5 @@
 		</div>
 
 		<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-		<script type="module">
-			const HELSINKI_CENTER = [60.1699, 24.9384];
-			const placesUrl = new URL(
-				'../../assets/data/places.json',
-				import.meta.url
-			);
-			const pinIconUrl = new URL(
-				'../../assets/icons/pin.svg',
-				import.meta.url
-			);
-			const mapElement = document.getElementById('map');
-
-			if (mapElement && typeof L !== 'undefined') {
-				let places = [];
-
-				try {
-					const response = await fetch(placesUrl);
-					places = await response.json();
-				} catch {
-					places = [];
-				}
-
-				if (places.length > 0) {
-					const locateButton = document.getElementById('map-locate');
-					const zoomInButton = document.getElementById('map-zoom-in');
-					const zoomOutButton =
-						document.getElementById('map-zoom-out');
-					const menuModal = document.getElementById('modal');
-					const menuModalClose =
-						document.getElementById('modal-close');
-					const dailyTab = document.getElementById('daily-tab');
-					const weeklyTab = document.getElementById('weekly-tab');
-					const dailyPanel = document.getElementById('daily-panel');
-					const weeklyPanel = document.getElementById('weekly-panel');
-					const menuPrices = document.querySelectorAll('.modal__price');
-					let pageScrollY = 0;
-
-					const formatMenuPrices = () => {
-						menuPrices.forEach((price) => {
-							const parts = price.textContent
-								.split('/')
-								.map((part) => part.trim())
-								.filter(Boolean);
-
-							if (parts.length < 2) {
-								return;
-							}
-
-							price.innerHTML = parts
-								.map(
-									(part) => `<span>${part}</span>`
-								)
-								.join('');
-						});
-					};
-
-					const map = L.map(mapElement, {
-						zoomControl: false,
-						scrollWheelZoom: true,
-					}).setView(HELSINKI_CENTER, 13);
-
-					L.tileLayer(
-						'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-						{
-							maxZoom: 19,
-							attribution: '&copy; OpenStreetMap contributors',
-						}
-					).addTo(map);
-
-					let activePlaceId = '';
-					let userMarker = null;
-					const markers = {};
-
-					const getMarkerIcon = (isActive) => {
-						const color = isActive ? 'yellow' : 'pink';
-						const label = isActive
-							? '<span class="map__marker-label">Near you</span>'
-							: '';
-
-						return L.divIcon({
-							className: '',
-							html: `
-								<div class="map__marker map__marker--${color}">
-									${label}
-									<img class="map__marker-icon" src="${pinIconUrl}" alt="">
-								</div>
-							`,
-							iconSize: [48, 48],
-							iconAnchor: [20, 44],
-						});
-					};
-
-					const redrawMarkers = () => {
-						for (const place of places) {
-							const marker = markers[place.id];
-
-							if (marker) {
-								marker.setIcon(
-									getMarkerIcon(place.id === activePlaceId)
-								);
-							}
-						}
-					};
-
-					const openDailyMenu = () => {
-						dailyTab?.classList.add('modal__tab--active');
-						weeklyTab?.classList.remove('modal__tab--active');
-						dailyPanel?.classList.add('modal__panel--active');
-						weeklyPanel?.classList.remove('modal__panel--active');
-						dailyPanel?.scrollTo(0, 0);
-					};
-
-					const openWeeklyMenu = () => {
-						weeklyTab?.classList.add('modal__tab--active');
-						dailyTab?.classList.remove('modal__tab--active');
-						weeklyPanel?.classList.add('modal__panel--active');
-						dailyPanel?.classList.remove('modal__panel--active');
-						weeklyPanel?.scrollTo(0, 0);
-					};
-
-					const openMenuModal = () => {
-						openDailyMenu();
-						menuModal?.scrollTo(0, 0);
-						dailyPanel?.scrollTo(0, 0);
-						weeklyPanel?.scrollTo(0, 0);
-						pageScrollY = window.scrollY;
-						document.body.style.top = `-${pageScrollY}px`;
-						document.body.classList.add('disable-scroll');
-						menuModal?.classList.add('is-open');
-					};
-
-					const closeMenuModal = () => {
-						document.body.classList.remove('disable-scroll');
-						document.body.style.top = '';
-						menuModal?.classList.remove('is-open');
-						window.scrollTo(0, pageScrollY);
-					};
-
-					const selectPlace = (placeId) => {
-						let place = places[0];
-
-						for (const item of places) {
-							if (item.id === placeId) {
-								place = item;
-							}
-						}
-
-						activePlaceId = place.id;
-						redrawMarkers();
-						map.flyTo([place.lat, place.lng], 14, {duration: 0.5});
-						openMenuModal();
-					};
-
-					const setUserLocation = (lat, lng) => {
-						if (userMarker) {
-							userMarker.setLatLng([lat, lng]);
-							return;
-						}
-
-						userMarker = L.marker([lat, lng], {
-							icon: L.divIcon({
-								className: '',
-								html: '<div class="map__user-marker"></div>',
-								iconSize: [28, 28],
-								iconAnchor: [14, 14],
-							}),
-						}).addTo(map);
-					};
-
-					const findNearestPlace = (lat, lng) => {
-						let nearestPlace = places[0];
-						let nearestDistance = Infinity;
-
-						for (const place of places) {
-							const lat1 = (lat * Math.PI) / 180;
-							const lng1 = (lng * Math.PI) / 180;
-							const lat2 = (place.lat * Math.PI) / 180;
-							const lng2 = (place.lng * Math.PI) / 180;
-							const dLat = lat2 - lat1;
-							const dLng = lng2 - lng1;
-							const a =
-								Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-								Math.cos(lat1) *
-									Math.cos(lat2) *
-									Math.sin(dLng / 2) *
-									Math.sin(dLng / 2);
-							const c =
-								2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-							const distance = 6371 * c;
-
-							if (distance < nearestDistance) {
-								nearestDistance = distance;
-								nearestPlace = place;
-							}
-						}
-
-						return nearestPlace;
-					};
-
-					const showNearestPlace = (lat, lng, moveSmoothly) => {
-						const nearestPlace = findNearestPlace(lat, lng);
-
-						activePlaceId = nearestPlace.id;
-						redrawMarkers();
-
-						if (moveSmoothly) {
-							map.flyTo([lat, lng], 15, {duration: 0.5});
-						} else {
-							map.setView([lat, lng], 15);
-						}
-					};
-
-					const getUserLocation = (moveSmoothly) => {
-						if (!navigator.geolocation) {
-							return;
-						}
-
-						navigator.geolocation.getCurrentPosition(
-							(position) => {
-								const lat = position.coords.latitude;
-								const lng = position.coords.longitude;
-
-								setUserLocation(lat, lng);
-								showNearestPlace(lat, lng, moveSmoothly);
-							},
-							() => {},
-							{
-								enableHighAccuracy: true,
-								timeout: 10000,
-							}
-						);
-					};
-
-					for (const place of places) {
-						const marker = L.marker([place.lat, place.lng], {
-							icon: getMarkerIcon(false),
-						});
-
-						marker.on('click', () => {
-							selectPlace(place.id);
-						});
-
-						marker.addTo(map);
-						markers[place.id] = marker;
-					}
-
-					menuModalClose?.addEventListener('click', () => {
-						closeMenuModal();
-					});
-
-					menuModal?.addEventListener('click', (event) => {
-						if (event.target === menuModal) {
-							closeMenuModal();
-						}
-					});
-
-					dailyTab?.addEventListener('click', () => {
-						openDailyMenu();
-					});
-
-					weeklyTab?.addEventListener('click', () => {
-						openWeeklyMenu();
-					});
-
-					locateButton?.addEventListener('click', () => {
-						getUserLocation(true);
-					});
-
-					zoomInButton?.addEventListener('click', () => {
-						map.zoomIn();
-					});
-
-					zoomOutButton?.addEventListener('click', () => {
-						map.zoomOut();
-					});
-
-					formatMenuPrices();
-					redrawMarkers();
-					getUserLocation(false);
-				}
-			}
-		</script>
 	</body>
 </html>
