@@ -66,7 +66,7 @@
 
 .profile__message--success {
   background-color: var(--green-color);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .profile__submit {

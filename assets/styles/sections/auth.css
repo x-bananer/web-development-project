@@ -142,7 +142,7 @@
 
 .auth__message:not(:empty):not(.auth__message--error) {
   background-color: var(--green-color);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .auth__footer-text {
