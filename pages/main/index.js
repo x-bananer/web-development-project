@@ -12,6 +12,9 @@ const filterCompany = document.querySelector('#filter-company');
 const filtersForm = document.querySelector('#filters');
 const cardsList = document.querySelector('#cards-list');
 
+const sortRestaurantsByName = (restaurants) =>
+    [...restaurants].sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+
 const createRestaurantCard = (r) => {
     const li = document.createElement('li');
 
@@ -97,13 +100,17 @@ const fetchRestaurants = async () => {
         const data = await res.json();
         const colors = ['yellow', 'pink'];
 
-        allRestaurants = data.map((restaurant) => ({
-            ...restaurant,
-            cardColor: colors[Math.floor(Math.random() * colors.length)],
-        }));
+        allRestaurants = data
+            .map((restaurant) => ({
+                ...restaurant,
+                cardColor: colors[Math.floor(Math.random() * colors.length)],
+            }))
+            .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
 
-        cities = [...new Set(allRestaurants.map((restaurant) => restaurant.city))].sort();
-        companies = [...new Set(allRestaurants.map((restaurant) => restaurant.company))].sort();
+        cities = [...new Set(allRestaurants.map((restaurant) => restaurant.city))]
+            .sort((a, b) => a.localeCompare(b, 'ru'));
+        companies = [...new Set(allRestaurants.map((restaurant) => restaurant.company))]
+            .sort((a, b) => a.localeCompare(b, 'ru'));
 
         cities.forEach((city) => {
             const option = document.createElement('option');
@@ -128,27 +135,29 @@ const fetchRestaurants = async () => {
 const searchRestaurants = ({ search = '', city = '', company = '' } = {}) => {
     const normalizedSearch = search.trim().toLowerCase();
 
-    return allRestaurants.filter((restaurant) => {
-        let matchesSearch = true;
+    return sortRestaurantsByName(
+        allRestaurants.filter((restaurant) => {
+            let matchesSearch = true;
 
-        if (normalizedSearch) {
-            const name = restaurant.name.toLowerCase();
-            const address = restaurant.address.toLowerCase();
-            const restaurantCity = restaurant.city.toLowerCase();
-            const restaurantCompany = restaurant.company.toLowerCase();
+            if (normalizedSearch) {
+                const name = restaurant.name.toLowerCase();
+                const address = restaurant.address.toLowerCase();
+                const restaurantCity = restaurant.city.toLowerCase();
+                const restaurantCompany = restaurant.company.toLowerCase();
 
-            matchesSearch =
-                name.includes(normalizedSearch) ||
-                address.includes(normalizedSearch) ||
-                restaurantCity.includes(normalizedSearch) ||
-                restaurantCompany.includes(normalizedSearch);
-        }
+                matchesSearch =
+                    name.includes(normalizedSearch) ||
+                    address.includes(normalizedSearch) ||
+                    restaurantCity.includes(normalizedSearch) ||
+                    restaurantCompany.includes(normalizedSearch);
+            }
 
-        const matchesCity = !city || restaurant.city === city;
-        const matchesCompany = !company || restaurant.company === company;
+            const matchesCity = !city || restaurant.city === city;
+            const matchesCompany = !company || restaurant.company === company;
 
-        return matchesSearch && matchesCity && matchesCompany;
-    });
+            return matchesSearch && matchesCity && matchesCompany;
+        })
+    );
 };
 
 const updateRestaurantList = () => {
