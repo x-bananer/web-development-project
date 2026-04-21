@@ -1,11 +1,13 @@
 // Restaurants
 const BASE_API_URL = 'https://media2.edu.metropolia.fi/restaurant';
-const TOKEN_KEY = '';
+const TOKEN_KEY = 'std.token';
+const USER_KEY = 'std.user';
 
 let allRestaurants = [];
 let cities = [];
 let companies = [];
 let currentRestaurantId = '';
+let currentUser = null;
 
 const filterSearch = document.querySelector('#filter-search');
 const filterCity = document.querySelector('#filter-city');
@@ -13,30 +15,76 @@ const filterCompany = document.querySelector('#filter-company');
 const filtersForm = document.querySelector('#filters');
 const cardsList = document.querySelector('#cards-list');
 
+const getToken = () => localStorage.getItem(TOKEN_KEY) || '';
+
+const getHeaders = (headers = {}) => ({
+	...headers,
+	Authorization: `Bearer ${getToken()}`,
+});
+
+const getStoredUser = () => {
+	try {
+		return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
 const updateHeaderAuthButton = () => {
 	const authButton = document.querySelector('.header-auth-button');
 	const isLoggedIn = Boolean(localStorage.getItem(TOKEN_KEY));
+	const user = getStoredUser();
+	const avatar = user?.avatar;
 
 	if (!authButton) return;
 
 	authButton.href = isLoggedIn
 		? authButton.dataset.profileHref
 		: authButton.dataset.loginHref;
-	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 	authButton.classList.toggle('button--login', !isLoggedIn);
 	authButton.classList.toggle('button--square', isLoggedIn);
 	authButton.classList.toggle('button--icon', isLoggedIn);
+
+	if (isLoggedIn && avatar) {
+		authButton.innerHTML = `<img class="header-auth-button__avatar" src="${BASE_API_URL}/uploads/${avatar}" alt="Profile avatar">`;
+		return;
+	}
+
+	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 };
 
-const sortRestaurantsByName = (restaurants) =>
-	[...restaurants].sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+const getFavouriteRestaurantId = () => {
+	const favouriteRestaurant = currentUser?.favouriteRestaurant;
+
+	if (!favouriteRestaurant) {
+		return '';
+	}
+
+	return typeof favouriteRestaurant === 'object'
+		? favouriteRestaurant._id || ''
+		: favouriteRestaurant;
+};
+
+const sortRestaurantsForDisplay = (restaurants) =>
+	[...restaurants].sort((a, b) => {
+		const favouriteRestaurantId = getFavouriteRestaurantId();
+		const aIsFavorite = a._id === favouriteRestaurantId;
+		const bIsFavorite = b._id === favouriteRestaurantId;
+
+		if (aIsFavorite && !bIsFavorite) return -1;
+		if (!aIsFavorite && bIsFavorite) return 1;
+
+		return a.name.localeCompare(b.name, 'ru');
+	});
 
 const createRestaurantCard = (r) => {
 	const li = document.createElement('li');
+	const isFavorite = r._id === getFavouriteRestaurantId();
 
 	li.classList.add('list__item');
 	li.innerHTML = `
-		<article class="card">
+		<article class="card${isFavorite ? ' card--favorite' : ''}">
 			<div class="card__media">
 				<div class="card__badges">
 					<span class="card__badge card__badge--blue">
@@ -73,29 +121,80 @@ const addCardEvents = (li, restaurant) => {
 	const card = li.querySelector('.card');
 	const favoriteButton = li.querySelector('.card__favorite-button');
 
-	favoriteButton?.addEventListener('click', (event) => {
+	favoriteButton?.addEventListener('click', async (event) => {
 		event.stopPropagation();
 
-		const list = li.parentElement;
-
-		document
-			.querySelectorAll('.card.card--favorite')
-			.forEach((activeCard) => {
-				if (activeCard !== card) {
-					activeCard.classList.remove('card--favorite');
-				}
-			});
-
-		card.classList.add('card--favorite');
-
-		if (list?.firstElementChild !== li) {
-			list.prepend(li);
+		if (!getToken()) {
+			window.location.href = './pages/login/index.html';
+			return;
 		}
+
+		await setFavouriteRestaurant(restaurant._id);
 	});
 
 	card.addEventListener('click', () => {
 		openMenuModal(restaurant._id);
 	});
+};
+
+const loadCurrentUser = async () => {
+	if (!getToken()) {
+		currentUser = null;
+		localStorage.removeItem(USER_KEY);
+		return;
+	}
+
+	currentUser = getStoredUser();
+
+	try {
+		const response = await fetch(`${BASE_API_URL}/api/v1/users/token`, {
+			headers: getHeaders(),
+		});
+
+		if (!response.ok) {
+			currentUser = null;
+			localStorage.removeItem(TOKEN_KEY);
+			localStorage.removeItem(USER_KEY);
+			updateHeaderAuthButton();
+			return;
+		}
+
+		currentUser = await response.json();
+		localStorage.setItem(USER_KEY, JSON.stringify(currentUser));
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+const setFavouriteRestaurant = async (restaurantId) => {
+	const body = {favouriteRestaurant: restaurantId};
+
+	if (currentUser?.username) {
+		body.username = currentUser.username;
+	}
+
+	if (currentUser?.email) {
+		body.email = currentUser.email;
+	}
+
+	try {
+		const response = await fetch(`${BASE_API_URL}/api/v1/users`, {
+			method: 'PUT',
+			headers: getHeaders({'Content-Type': 'application/json'}),
+			body: JSON.stringify(body),
+		});
+		const result = await response.json();
+
+		if (!response.ok) {
+			throw new Error(result.message || 'Error.');
+		}
+
+		currentUser = result.data;
+		localStorage.setItem(USER_KEY, JSON.stringify(result.data));
+		updateRestaurantList();
+	} catch (error) {
+		console.error(error);
+	}
 };
 
 const fetchRestaurants = async () => {
@@ -145,7 +244,7 @@ const fetchRestaurants = async () => {
 const searchRestaurants = ({search = '', city = '', company = ''} = {}) => {
 	const normalizedSearch = search.trim().toLowerCase();
 
-	return sortRestaurantsByName(
+	return sortRestaurantsForDisplay(
 		allRestaurants.filter((restaurant) => {
 			let matchesSearch = true;
 
@@ -193,8 +292,10 @@ const updateRestaurantList = () => {
 	});
 };
 
-fetchRestaurants();
-updateHeaderAuthButton();
+loadCurrentUser().then(() => {
+	updateHeaderAuthButton();
+	fetchRestaurants();
+});
 
 filterSearch?.addEventListener('input', updateRestaurantList);
 filterCity?.addEventListener('change', updateRestaurantList);

@@ -1,7 +1,8 @@
 /* global L */
 
 const BASE_API_URL = 'https://media2.edu.metropolia.fi/restaurant';
-const TOKEN_KEY = '';
+const TOKEN_KEY = 'std.token';
+const USER_KEY = 'std.user';
 const HELSINKI_CENTER = [60.1699, 24.9384];
 const pinIconUrl = '../../assets/icons/pin.svg';
 
@@ -19,19 +20,36 @@ const weeklyTab = document.getElementById('weekly-tab');
 const dailyPanel = document.getElementById('daily-panel');
 const weeklyPanel = document.getElementById('weekly-panel');
 
+const getStoredUser = () => {
+	try {
+		return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
 const updateHeaderAuthButton = () => {
 	const authButton = document.querySelector('.header-auth-button');
 	const isLoggedIn = Boolean(localStorage.getItem(TOKEN_KEY));
+	const user = getStoredUser();
+	const avatar = user?.avatar;
 
 	if (!authButton) return;
 
 	authButton.href = isLoggedIn
 		? authButton.dataset.profileHref
 		: authButton.dataset.loginHref;
-	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 	authButton.classList.toggle('button--login', !isLoggedIn);
 	authButton.classList.toggle('button--square', isLoggedIn);
 	authButton.classList.toggle('button--icon', isLoggedIn);
+
+	if (isLoggedIn && avatar) {
+		authButton.innerHTML = `<img class="header-auth-button__avatar" src="${BASE_API_URL}/uploads/${avatar}" alt="Profile avatar">`;
+		return;
+	}
+
+	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 };
 
 let restaurants = [];

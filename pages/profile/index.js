@@ -1,6 +1,6 @@
 const API_URL = 'https://media2.edu.metropolia.fi/restaurant';
-const TOKEN_KEY = '';
-const USER_KEY = '';
+const TOKEN_KEY = 'std.token';
+const USER_KEY = 'std.user';
 
 const profileForm = document.getElementById('profile-form');
 const profileMessage = document.getElementById('profile-message');
@@ -10,19 +10,36 @@ const profileAvatar = document.getElementById('profile-avatar');
 const profileAvatarImage = document.getElementById('profile-avatar-image');
 const logoutButton = document.getElementById('profile-logout');
 
+const getStoredUser = () => {
+	try {
+		return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
 const updateHeaderAuthButton = () => {
 	const authButton = document.querySelector('.header-auth-button');
 	const isLoggedIn = Boolean(localStorage.getItem(TOKEN_KEY));
+	const user = getStoredUser();
+	const avatar = user?.avatar;
 
 	if (!authButton) return;
 
 	authButton.href = isLoggedIn
 		? authButton.dataset.profileHref
 		: authButton.dataset.loginHref;
-	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 	authButton.classList.toggle('button--login', !isLoggedIn);
 	authButton.classList.toggle('button--square', isLoggedIn);
 	authButton.classList.toggle('button--icon', isLoggedIn);
+
+	if (isLoggedIn && avatar) {
+		authButton.innerHTML = `<img class="header-auth-button__avatar" src="${API_URL}/uploads/${avatar}" alt="Profile avatar">`;
+		return;
+	}
+
+	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 };
 
 const getToken = () => localStorage.getItem(TOKEN_KEY) || '';
@@ -89,9 +106,10 @@ const loadUser = async () => {
 		const user = await response.json();
 		localStorage.setItem(USER_KEY, JSON.stringify(user));
 		fillForm(user);
+		updateHeaderAuthButton();
 	} catch (error) {
 		console.error(error);
-		setMessage('Could not load profile.', true);
+		setMessage('Could not load profile', true);
 	}
 };
 
@@ -121,16 +139,17 @@ profileForm?.addEventListener('submit', async (event) => {
 		const result = await response.json();
 
 		if (!response.ok) {
-			setMessage(result.message || 'Update failed.', true);
+			setMessage(result.message || 'Update failed', true);
 			return;
 		}
 
 		localStorage.setItem(USER_KEY, JSON.stringify(result.data));
 		fillForm(result.data);
+		updateHeaderAuthButton();
 		setMessage('Profile updated!');
 	} catch (error) {
 		console.error(error);
-		setMessage('Update failed.', true);
+		setMessage('Update failed', true);
 	}
 });
 
@@ -157,7 +176,7 @@ profilePhotoInput?.addEventListener('change', async () => {
 		const result = await response.json();
 
 		if (!response.ok) {
-			setMessage(result.error || 'Avatar upload failed.', true);
+			setMessage(result.error || 'Avatar upload failed', true);
 			return;
 		}
 
@@ -165,10 +184,11 @@ profilePhotoInput?.addEventListener('change', async () => {
 		const updatedUser = {...savedUser, ...result.data};
 		localStorage.setItem(USER_KEY, JSON.stringify(updatedUser));
 		renderAvatar(updatedUser.avatar);
-		setMessage('Avatar updated.');
+		updateHeaderAuthButton();
+		setMessage('Avatar updated');
 	} catch (error) {
 		console.error(error);
-		setMessage('Avatar upload failed.', true);
+		setMessage('Avatar upload failed', true);
 	}
 });
 

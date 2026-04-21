@@ -1,6 +1,6 @@
 const API_URL = 'https://media2.edu.metropolia.fi/restaurant';
-const TOKEN_KEY = '';
-const USER_KEY = '';
+const TOKEN_KEY = 'std.token';
+const USER_KEY = 'std.user';
 
 const loginTab = document.getElementById('login-tab');
 const signupTab = document.getElementById('signup-tab');
@@ -10,19 +10,36 @@ const signupForm = document.getElementById('signup-form');
 const loginMessage = document.getElementById('login-message');
 const signupMessage = document.getElementById('signup-message');
 
+const getStoredUser = () => {
+	try {
+		return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
+
 const updateHeaderAuthButton = () => {
 	const authButton = document.querySelector('.header-auth-button');
 	const isLoggedIn = Boolean(localStorage.getItem(TOKEN_KEY));
+	const user = getStoredUser();
+	const avatar = user?.avatar;
 
 	if (!authButton) return;
 
 	authButton.href = isLoggedIn
 		? authButton.dataset.profileHref
 		: authButton.dataset.loginHref;
-	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 	authButton.classList.toggle('button--login', !isLoggedIn);
 	authButton.classList.toggle('button--square', isLoggedIn);
 	authButton.classList.toggle('button--icon', isLoggedIn);
+
+	if (isLoggedIn && avatar) {
+		authButton.innerHTML = `<img class="header-auth-button__avatar" src="${API_URL}/uploads/${avatar}" alt="Profile avatar">`;
+		return;
+	}
+
+	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 };
 
 const debounce = (callback, delay = 400) => {
@@ -103,6 +120,7 @@ const handleLoginSubmit = async () => {
 		}
 
 		saveAuth(result.token, result.data);
+		updateHeaderAuthButton();
 		window.location.href = '../profile/index.html';
 	} catch (error) {
 		console.error(error);
