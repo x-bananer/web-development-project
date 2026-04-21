@@ -1,5 +1,6 @@
 // Restaurants
 const BASE_API_URL = 'https://media2.edu.metropolia.fi/restaurant';
+const TOKEN_KEY = '';
 
 let allRestaurants = [];
 let cities = [];
@@ -12,14 +13,29 @@ const filterCompany = document.querySelector('#filter-company');
 const filtersForm = document.querySelector('#filters');
 const cardsList = document.querySelector('#cards-list');
 
+const updateHeaderAuthButton = () => {
+	const authButton = document.querySelector('.header-auth-button');
+	const isLoggedIn = Boolean(localStorage.getItem(TOKEN_KEY));
+
+	if (!authButton) return;
+
+	authButton.href = isLoggedIn
+		? authButton.dataset.profileHref
+		: authButton.dataset.loginHref;
+	authButton.textContent = isLoggedIn ? '☻' : 'Login';
+	authButton.classList.toggle('button--login', !isLoggedIn);
+	authButton.classList.toggle('button--square', isLoggedIn);
+	authButton.classList.toggle('button--icon', isLoggedIn);
+};
+
 const sortRestaurantsByName = (restaurants) =>
-    [...restaurants].sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+	[...restaurants].sort((a, b) => a.name.localeCompare(b.name, 'ru'));
 
 const createRestaurantCard = (r) => {
-    const li = document.createElement('li');
+	const li = document.createElement('li');
 
-    li.classList.add('list__item');
-    li.innerHTML = `
+	li.classList.add('list__item');
+	li.innerHTML = `
 		<article class="card">
 			<div class="card__media">
 				<div class="card__badges">
@@ -46,150 +62,145 @@ const createRestaurantCard = (r) => {
 			<button class="button button--square button--icon card__favorite-button" type="button">
 				♥
 			</button>
-
-			<button class="button button--card card__unpin-button" type="button">
-				UNPIN
-			</button>
 		</article>`;
 
-    addCardEvents(li, r);
+	addCardEvents(li, r);
 
-    return li;
+	return li;
 };
 
 const addCardEvents = (li, restaurant) => {
-    const card = li.querySelector('.card');
-    const favoriteButton = li.querySelector('.card__favorite-button');
-    const unpinButton = li.querySelector('.card__unpin-button');
+	const card = li.querySelector('.card');
+	const favoriteButton = li.querySelector('.card__favorite-button');
 
-    favoriteButton?.addEventListener('click', (event) => {
-        event.stopPropagation();
+	favoriteButton?.addEventListener('click', (event) => {
+		event.stopPropagation();
 
-        const list = li.parentElement;
+		const list = li.parentElement;
 
-        document.querySelectorAll('.card.card--favorite').forEach((activeCard) => {
-            if (activeCard !== card) {
-                activeCard.classList.remove('card--favorite');
-            }
-        });
+		document
+			.querySelectorAll('.card.card--favorite')
+			.forEach((activeCard) => {
+				if (activeCard !== card) {
+					activeCard.classList.remove('card--favorite');
+				}
+			});
 
-        card.classList.add('card--favorite');
+		card.classList.add('card--favorite');
 
-        if (list?.firstElementChild !== li) {
-            list.prepend(li);
-        }
-    });
+		if (list?.firstElementChild !== li) {
+			list.prepend(li);
+		}
+	});
 
-    unpinButton?.addEventListener('click', (event) => {
-        event.stopPropagation();
-        card.classList.remove('card--favorite');
-    });
-
-    card.addEventListener('click', () => {
-        openMenuModal(restaurant._id);
-    });
+	card.addEventListener('click', () => {
+		openMenuModal(restaurant._id);
+	});
 };
 
 const fetchRestaurants = async () => {
-    if (cardsList) {
-        cardsList.innerHTML = '<li class="list__stub">Loading....</li>';
-    }
+	if (cardsList) {
+		cardsList.innerHTML = '<li class="list__stub">Loading....</li>';
+	}
 
-    try {
-        const res = await fetch(`${BASE_API_URL}/api/v1/restaurants`);
-        const data = await res.json();
-        const colors = ['yellow', 'pink'];
+	try {
+		const res = await fetch(`${BASE_API_URL}/api/v1/restaurants`);
+		const data = await res.json();
+		const colors = ['yellow', 'pink'];
 
-        allRestaurants = data
-            .map((restaurant) => ({
-                ...restaurant,
-                cardColor: colors[Math.floor(Math.random() * colors.length)],
-            }))
-            .sort((a, b) => a.name.localeCompare(b.name, 'ru'));
+		allRestaurants = data
+			.map((restaurant) => ({
+				...restaurant,
+				cardColor: colors[Math.floor(Math.random() * colors.length)],
+			}))
+			.sort((a, b) => a.name.localeCompare(b.name, 'ru'));
 
-        cities = [...new Set(allRestaurants.map((restaurant) => restaurant.city))]
-            .sort((a, b) => a.localeCompare(b, 'ru'));
-        companies = [...new Set(allRestaurants.map((restaurant) => restaurant.company))]
-            .sort((a, b) => a.localeCompare(b, 'ru'));
+		cities = [
+			...new Set(allRestaurants.map((restaurant) => restaurant.city)),
+		].sort((a, b) => a.localeCompare(b, 'ru'));
+		companies = [
+			...new Set(allRestaurants.map((restaurant) => restaurant.company)),
+		].sort((a, b) => a.localeCompare(b, 'ru'));
 
-        cities.forEach((city) => {
-            const option = document.createElement('option');
-            option.value = city;
-            option.textContent = city;
-            filterCity?.appendChild(option);
-        });
+		cities.forEach((city) => {
+			const option = document.createElement('option');
+			option.value = city;
+			option.textContent = city;
+			filterCity?.appendChild(option);
+		});
 
-        companies.forEach((company) => {
-            const option = document.createElement('option');
-            option.value = company;
-            option.textContent = company;
-            filterCompany?.appendChild(option);
-        });
+		companies.forEach((company) => {
+			const option = document.createElement('option');
+			option.value = company;
+			option.textContent = company;
+			filterCompany?.appendChild(option);
+		});
 
-        updateRestaurantList();
-    } catch (err) {
-        console.error(err);
-    }
+		updateRestaurantList();
+	} catch (err) {
+		console.error(err);
+	}
 };
 
-const searchRestaurants = ({ search = '', city = '', company = '' } = {}) => {
-    const normalizedSearch = search.trim().toLowerCase();
+const searchRestaurants = ({search = '', city = '', company = ''} = {}) => {
+	const normalizedSearch = search.trim().toLowerCase();
 
-    return sortRestaurantsByName(
-        allRestaurants.filter((restaurant) => {
-            let matchesSearch = true;
+	return sortRestaurantsByName(
+		allRestaurants.filter((restaurant) => {
+			let matchesSearch = true;
 
-            if (normalizedSearch) {
-                const name = restaurant.name.toLowerCase();
-                const address = restaurant.address.toLowerCase();
-                const restaurantCity = restaurant.city.toLowerCase();
-                const restaurantCompany = restaurant.company.toLowerCase();
+			if (normalizedSearch) {
+				const name = restaurant.name.toLowerCase();
+				const address = restaurant.address.toLowerCase();
+				const restaurantCity = restaurant.city.toLowerCase();
+				const restaurantCompany = restaurant.company.toLowerCase();
 
-                matchesSearch =
-                    name.includes(normalizedSearch) ||
-                    address.includes(normalizedSearch) ||
-                    restaurantCity.includes(normalizedSearch) ||
-                    restaurantCompany.includes(normalizedSearch);
-            }
+				matchesSearch =
+					name.includes(normalizedSearch) ||
+					address.includes(normalizedSearch) ||
+					restaurantCity.includes(normalizedSearch) ||
+					restaurantCompany.includes(normalizedSearch);
+			}
 
-            const matchesCity = !city || restaurant.city === city;
-            const matchesCompany = !company || restaurant.company === company;
+			const matchesCity = !city || restaurant.city === city;
+			const matchesCompany = !company || restaurant.company === company;
 
-            return matchesSearch && matchesCity && matchesCompany;
-        })
-    );
+			return matchesSearch && matchesCity && matchesCompany;
+		})
+	);
 };
 
 const updateRestaurantList = () => {
-    const filteredRestaurants = searchRestaurants({
-        search: filterSearch?.value || '',
-        city: filterCity?.value || '',
-        company: filterCompany?.value || '',
-    });
-    const cardList = cardsList;
+	const filteredRestaurants = searchRestaurants({
+		search: filterSearch?.value || '',
+		city: filterCity?.value || '',
+		company: filterCompany?.value || '',
+	});
+	const cardList = cardsList;
 
-    if (!cardList) return;
+	if (!cardList) return;
 
-    cardList.innerHTML = '';
+	cardList.innerHTML = '';
 
-    if (filteredRestaurants.length === 0) {
-        cardList.innerHTML = '<li class="list__stub">Nothing found...</li>';
-        return;
-    }
+	if (filteredRestaurants.length === 0) {
+		cardList.innerHTML = '<li class="list__stub">Nothing found...</li>';
+		return;
+	}
 
-    filteredRestaurants.forEach((restaurant) => {
-        const li = createRestaurantCard(restaurant);
-        cardList.appendChild(li);
-    });
+	filteredRestaurants.forEach((restaurant) => {
+		const li = createRestaurantCard(restaurant);
+		cardList.appendChild(li);
+	});
 };
 
 fetchRestaurants();
+updateHeaderAuthButton();
 
 filterSearch?.addEventListener('input', updateRestaurantList);
 filterCity?.addEventListener('change', updateRestaurantList);
 filterCompany?.addEventListener('change', updateRestaurantList);
 filtersForm?.addEventListener('reset', () => {
-    setTimeout(updateRestaurantList, 0);
+	setTimeout(updateRestaurantList, 0);
 });
 
 // Modal
@@ -205,87 +216,107 @@ const weeklyPanel = document.getElementById('weekly-panel');
 let pageScrollY = 0;
 
 const formatMenuPrices = () => {
-    document.querySelectorAll('.modal__price').forEach((price) => {
-        const parts = price.textContent
-            .split('/')
-            .map((part) => part.trim())
-            .filter(Boolean);
+	document.querySelectorAll('.modal__price').forEach((price) => {
+		const parts = price.textContent
+			.split('/')
+			.map((part) => part.trim())
+			.filter(Boolean);
 
-        if (parts.length < 2) return;
+		if (parts.length < 2) return;
 
-        price.innerHTML = parts.map((part) => `<span>${part}</span>`).join('');
-    });
+		price.innerHTML = parts.map((part) => `<span>${part}</span>`).join('');
+	});
 };
 
 const getTodayDate = () => {
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
-        'September', 'October', 'November', 'December'];
-    const today = new Date();
+	const days = [
+		'Sunday',
+		'Monday',
+		'Tuesday',
+		'Wednesday',
+		'Thursday',
+		'Friday',
+		'Saturday',
+	];
+	const months = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December',
+	];
+	const today = new Date();
 
-    return `${days[today.getDay()]} ${today.getDate()} ${months[today.getMonth()]}`;
+	return `${days[today.getDay()]} ${today.getDate()} ${months[today.getMonth()]}`;
 };
 
 const getDietTags = (dietsValue) => {
-    let tags = '';
+	let tags = '';
 
-    if (!dietsValue) {
-        return tags;
-    }
+	if (!dietsValue) {
+		return tags;
+	}
 
-    const dietList = Array.isArray(dietsValue)
-        ? dietsValue
-        : typeof dietsValue === 'string'
-            ? dietsValue.split(',')
-            : [];
+	const dietList = Array.isArray(dietsValue)
+		? dietsValue
+		: typeof dietsValue === 'string'
+			? dietsValue.split(',')
+			: [];
 
-    dietList.forEach((diet, index) => {
-        let color = 'yellow';
+	dietList.forEach((diet, index) => {
+		let color = 'yellow';
 
-        if (index === 1) {
-            color = 'blue';
-        }
+		if (index === 1) {
+			color = 'blue';
+		}
 
-        if (index === 2) {
-            color = 'pink';
-        }
+		if (index === 2) {
+			color = 'pink';
+		}
 
-        if (index === 3) {
-            color = 'orange';
-        }
+		if (index === 3) {
+			color = 'orange';
+		}
 
-        tags += `<span class="modal__item-tag modal__item-tag--${color}">${String(diet).trim()}</span>`;
-    });
+		tags += `<span class="modal__item-tag modal__item-tag--${color}">${String(diet).trim()}</span>`;
+	});
 
-    return tags;
+	return tags;
 };
 
 const renderDailyMenu = (courses) => {
-    if (!dailyPanel) return;
-    const title = dailyPanel.querySelector('.modal__group-title');
-    const list = dailyPanel.querySelector('.modal__list');
+	if (!dailyPanel) return;
+	const title = dailyPanel.querySelector('.modal__group-title');
+	const list = dailyPanel.querySelector('.modal__list');
 
-    if (!title || !list) return;
+	if (!title || !list) return;
 
-    title.textContent = getTodayDate();
-    title.hidden = false;
-    list.innerHTML = '';
+	title.textContent = getTodayDate();
+	title.hidden = false;
+	list.innerHTML = '';
 
-    if (!courses || courses.length === 0) {
-        title.hidden = true;
-        list.innerHTML = '<li class="list__stub">Nothing found...</li>';
-        return;
-    }
+	if (!courses || courses.length === 0) {
+		title.hidden = true;
+		list.innerHTML = '<li class="list__stub">Nothing found...</li>';
+		return;
+	}
 
-    courses.forEach((course) => {
-        let price = '';
-        const diets = getDietTags(course.diets);
+	courses.forEach((course) => {
+		let price = '';
+		const diets = getDietTags(course.diets);
 
-        if (course.price) {
-            price = `<span class="modal__price">${course.price}</span>`;
-        }
+		if (course.price) {
+			price = `<span class="modal__price">${course.price}</span>`;
+		}
 
-        list.innerHTML += `
+		list.innerHTML += `
 			<li class="modal__item">
 				<div class="modal__item-wrap">
 					<div class="modal__meal-tags">
@@ -297,35 +328,35 @@ const renderDailyMenu = (courses) => {
 				</div>
 				${price}
 			</li>`;
-    });
+	});
 
-    formatMenuPrices();
+	formatMenuPrices();
 };
 
 const renderWeeklyMenu = (days) => {
-    if (!weeklyPanel) return;
+	if (!weeklyPanel) return;
 
-    if (!days || days.length === 0) {
-        weeklyPanel.innerHTML = `
+	if (!days || days.length === 0) {
+		weeklyPanel.innerHTML = `
             <div class="modal__stub">Nothing found...</div>
             ${getModalAccentMarkup()}`;
-        return;
-    }
+		return;
+	}
 
-    weeklyPanel.innerHTML = '';
+	weeklyPanel.innerHTML = '';
 
-    days.forEach((day) => {
-        let coursesHtml = '';
+	days.forEach((day) => {
+		let coursesHtml = '';
 
-        day.courses.forEach((course) => {
-            let price = '';
-            const diets = getDietTags(course.diets);
+		day.courses.forEach((course) => {
+			let price = '';
+			const diets = getDietTags(course.diets);
 
-            if (course.price) {
-                price = `<span class="modal__price">${course.price}</span>`;
-            }
+			if (course.price) {
+				price = `<span class="modal__price">${course.price}</span>`;
+			}
 
-            coursesHtml += `
+			coursesHtml += `
 				<li class="modal__item modal__item--s">
 					<div class="modal__item-wrap">
 						<div class="modal__meal-tags">
@@ -337,9 +368,9 @@ const renderWeeklyMenu = (days) => {
 					</div>
 					${price}
 				</li>`;
-        });
+		});
 
-        weeklyPanel.innerHTML += `
+		weeklyPanel.innerHTML += `
             <section class="modal__group">
                 <div class="modal__group-head">
                     <h3 class="modal__group-title">${day.date}</h3>
@@ -348,72 +379,76 @@ const renderWeeklyMenu = (days) => {
                     ${coursesHtml}
                 </ul>
             </section>`;
-    });
+	});
 
-    weeklyPanel.innerHTML += getModalAccentMarkup();
+	weeklyPanel.innerHTML += getModalAccentMarkup();
 
-    formatMenuPrices();
+	formatMenuPrices();
 };
 
 const loadRestaurantData = async (id) => {
-    try {
-        const res = await fetch(`${BASE_API_URL}/api/v1/restaurants/${id}`);
-        const restaurant = await res.json();
-        menuModalTitle.textContent = restaurant.name;
-        menuModalCaption.textContent = `${restaurant.address}, ${restaurant.city}`;
-    } catch (err) {
-        console.error(err);
-    }
+	try {
+		const res = await fetch(`${BASE_API_URL}/api/v1/restaurants/${id}`);
+		const restaurant = await res.json();
+		menuModalTitle.textContent = restaurant.name;
+		menuModalCaption.textContent = `${restaurant.address}, ${restaurant.city}`;
+	} catch (err) {
+		console.error(err);
+	}
 };
 
 const loadDailyMenu = async () => {
-    if (!currentRestaurantId || !dailyPanel) return;
+	if (!currentRestaurantId || !dailyPanel) return;
 
-    const title = dailyPanel.querySelector('.modal__group-title');
-    const list = dailyPanel.querySelector('.modal__list');
+	const title = dailyPanel.querySelector('.modal__group-title');
+	const list = dailyPanel.querySelector('.modal__list');
 
-    if (title) {
-        title.textContent = getTodayDate();
-        title.hidden = false;
-    }
+	if (title) {
+		title.textContent = getTodayDate();
+		title.hidden = false;
+	}
 
-    if (list) {
-        list.innerHTML = '<li class="list__stub">Loading...</li>';
-    }
+	if (list) {
+		list.innerHTML = '<li class="list__stub">Loading...</li>';
+	}
 
-    try {
-        const res = await fetch(`${BASE_API_URL}/api/v1/restaurants/daily/${currentRestaurantId}/en`);
-        const data = await res.json();
-        renderDailyMenu(data.courses);
-    } catch (err) {
-        console.error(err);
+	try {
+		const res = await fetch(
+			`${BASE_API_URL}/api/v1/restaurants/daily/${currentRestaurantId}/en`
+		);
+		const data = await res.json();
+		renderDailyMenu(data.courses);
+	} catch (err) {
+		console.error(err);
 
-        if (list) {
-            if (title) {
-                title.hidden = true;
-            }
-            list.innerHTML = '<li class="list__stub">Nothing found...</li>';
-        }
-    }
+		if (list) {
+			if (title) {
+				title.hidden = true;
+			}
+			list.innerHTML = '<li class="list__stub">Nothing found...</li>';
+		}
+	}
 };
 
 const loadWeeklyMenu = async () => {
-    if (!currentRestaurantId || !weeklyPanel) return;
+	if (!currentRestaurantId || !weeklyPanel) return;
 
-    weeklyPanel.innerHTML = `
+	weeklyPanel.innerHTML = `
         <div class="modal__stub">Loading...</div>
         ${getModalAccentMarkup()}`;
 
-    try {
-        const res = await fetch(`${BASE_API_URL}/api/v1/restaurants/weekly/${currentRestaurantId}/en`);
-        const data = await res.json();
-        renderWeeklyMenu(data.days);
-    } catch (err) {
-        console.error(err);
-        weeklyPanel.innerHTML = `
+	try {
+		const res = await fetch(
+			`${BASE_API_URL}/api/v1/restaurants/weekly/${currentRestaurantId}/en`
+		);
+		const data = await res.json();
+		renderWeeklyMenu(data.days);
+	} catch (err) {
+		console.error(err);
+		weeklyPanel.innerHTML = `
             <div class="modal__stub">Nothing found...</div>
             ${getModalAccentMarkup()}`;
-    }
+	}
 };
 
 const getModalAccentMarkup = () => `
@@ -422,56 +457,56 @@ const getModalAccentMarkup = () => `
     </div>`;
 
 const openMenuModal = (id) => {
-    currentRestaurantId = id;
-    loadRestaurantData(id);
-    openDailyMenu();
-    menuModal?.scrollTo(0, 0);
-    dailyPanel?.scrollTo(0, 0);
-    weeklyPanel?.scrollTo(0, 0);
+	currentRestaurantId = id;
+	loadRestaurantData(id);
+	openDailyMenu();
+	menuModal?.scrollTo(0, 0);
+	dailyPanel?.scrollTo(0, 0);
+	weeklyPanel?.scrollTo(0, 0);
 
-    pageScrollY = window.scrollY;
-    document.body.style.top = `-${pageScrollY}px`;
-    document.body.classList.add('disable-scroll');
+	pageScrollY = window.scrollY;
+	document.body.style.top = `-${pageScrollY}px`;
+	document.body.classList.add('disable-scroll');
 
-    menuModal?.classList.add('is-open');
+	menuModal?.classList.add('is-open');
 };
 
 const closeMenuModal = () => {
-    document.body.classList.remove('disable-scroll');
-    document.body.style.top = '';
-    menuModal?.classList.remove('is-open');
+	document.body.classList.remove('disable-scroll');
+	document.body.style.top = '';
+	menuModal?.classList.remove('is-open');
 
-    window.scrollTo(0, pageScrollY);
+	window.scrollTo(0, pageScrollY);
 };
 
 const openDailyMenu = () => {
-    dailyTab?.classList.add('modal__tab--active');
-    weeklyTab?.classList.remove('modal__tab--active');
+	dailyTab?.classList.add('modal__tab--active');
+	weeklyTab?.classList.remove('modal__tab--active');
 
-    dailyPanel?.classList.add('modal__panel--active');
-    weeklyPanel?.classList.remove('modal__panel--active');
+	dailyPanel?.classList.add('modal__panel--active');
+	weeklyPanel?.classList.remove('modal__panel--active');
 
-    dailyPanel?.scrollTo(0, 0);
-    loadDailyMenu();
+	dailyPanel?.scrollTo(0, 0);
+	loadDailyMenu();
 };
 
 const openWeeklyMenu = () => {
-    weeklyTab?.classList.add('modal__tab--active');
-    dailyTab?.classList.remove('modal__tab--active');
+	weeklyTab?.classList.add('modal__tab--active');
+	dailyTab?.classList.remove('modal__tab--active');
 
-    weeklyPanel?.classList.add('modal__panel--active');
-    dailyPanel?.classList.remove('modal__panel--active');
+	weeklyPanel?.classList.add('modal__panel--active');
+	dailyPanel?.classList.remove('modal__panel--active');
 
-    weeklyPanel?.scrollTo(0, 0);
-    loadWeeklyMenu();
+	weeklyPanel?.scrollTo(0, 0);
+	loadWeeklyMenu();
 };
 
 menuModalClose?.addEventListener('click', closeMenuModal);
 
 menuModal?.addEventListener('click', (event) => {
-    if (event.target === menuModal) {
-        closeMenuModal();
-    }
+	if (event.target === menuModal) {
+		closeMenuModal();
+	}
 });
 
 dailyTab?.addEventListener('click', openDailyMenu);

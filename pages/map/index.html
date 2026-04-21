@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>StudEat Map</title>
-		<link rel="icon" href="../../assets/favicon.png" type="image/png">
-		<link rel="stylesheet" href="../../assets/styles/index.css">
+		<link rel="icon" href="../../assets/favicon.png" type="image/png" />
+		<link rel="stylesheet" href="../../assets/styles/index.css" />
 		<link
 			rel="stylesheet"
 			href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-		>
+		/>
 		<script src="./index.js" defer></script>
 	</head>
 	<body>
@@ -32,10 +32,12 @@
 				</nav>
 
 				<a
-					class="button button--square button--icon"
+					class="button header-auth-button"
 					href="../../pages/login/index.html"
+					data-login-href="../../pages/login/index.html"
+					data-profile-href="../../pages/profile/index.html"
 				>
-					☻
+					Login
 				</a>
 			</div>
 		</header>
@@ -81,7 +83,10 @@
 		<nav class="toggle">
 			<div class="toggle__frame">
 				<a class="toggle__link" href="../../index.html">List view</a>
-				<a class="toggle__link toggle__link--active" href="../../pages/map/index.html">
+				<a
+					class="toggle__link toggle__link--active"
+					href="../../pages/map/index.html"
+				>
 					Map View
 				</a>
 			</div>
@@ -123,80 +128,140 @@
 							<li class="modal__item">
 								<div class="modal__item-wrap">
 									<div class="modal__item-title">
-										<span>Roasted broccoli and organic tofu, soy yogurt and potatoes</span>
+										<span
+											>Roasted broccoli and organic tofu,
+											soy yogurt and potatoes</span
+										>
 										<div class="modal__meal-tags">
-											<span class="modal__item-tag modal__item-tag--orange">G</span>
-											<span class="modal__item-tag modal__item-tag--pink">M</span>
+											<span
+												class="modal__item-tag modal__item-tag--orange"
+												>G</span
+											>
+											<span
+												class="modal__item-tag modal__item-tag--pink"
+												>M</span
+											>
 										</div>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item">
 								<div class="modal__item-wrap">
 									<div class="modal__item-title">
-										<span>Orange-chili cod and mashed potatoes</span>
+										<span
+											>Orange-chili cod and mashed
+											potatoes</span
+										>
 										<div class="modal__meal-tags">
-											<span class="modal__item-tag modal__item-tag--orange">G</span>
-											<span class="modal__item-tag modal__item-tag--blue">L</span>
+											<span
+												class="modal__item-tag modal__item-tag--orange"
+												>G</span
+											>
+											<span
+												class="modal__item-tag modal__item-tag--blue"
+												>L</span
+											>
 										</div>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item">
 								<div class="modal__item-wrap">
 									<div class="modal__item-title">
 										<span>Sweet Potato Soup</span>
 										<div class="modal__meal-tags">
-											<span class="modal__item-tag modal__item-tag--orange">G</span>
-											<span class="modal__item-tag modal__item-tag--pink">M</span>
+											<span
+												class="modal__item-tag modal__item-tag--orange"
+												>G</span
+											>
+											<span
+												class="modal__item-tag modal__item-tag--pink"
+												>M</span
+											>
 										</div>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,45 € / 9,50 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,45 € / 9,50 €</span
+								>
 							</li>
 							<li class="modal__item">
 								<div class="modal__item-wrap">
 									<div class="modal__item-title">
-										<span>Bread lunch: Stuffed baguette, includes side salad and drink</span>
+										<span
+											>Bread lunch: Stuffed baguette,
+											includes side salad and drink</span
+										>
 										<div class="modal__meal-tags">
-											<span class="modal__item-tag modal__item-tag--pink">M</span>
+											<span
+												class="modal__item-tag modal__item-tag--pink"
+												>M</span
+											>
 										</div>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 8,45 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 8,45 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item">
 								<div class="modal__item-wrap">
 									<div class="modal__item-title">
-										<span>Chicken fillet, cheddar sauce and potatoes</span>
+										<span
+											>Chicken fillet, cheddar sauce and
+											potatoes</span
+										>
 										<div class="modal__meal-tags">
-											<span class="modal__item-tag modal__item-tag--orange">G</span>
-											<span class="modal__item-tag modal__item-tag--blue">L</span>
+											<span
+												class="modal__item-tag modal__item-tag--orange"
+												>G</span
+											>
+											<span
+												class="modal__item-tag modal__item-tag--blue"
+												>L</span
+											>
 										</div>
 									</div>
 								</div>
-								<span class="modal__price">5,90 € / 10,90 € / 11,70 €</span>
+								<span class="modal__price"
+									>5,90 € / 10,90 € / 11,70 €</span
+								>
 							</li>
 							<li class="modal__item">
 								<div class="modal__item-wrap">
 									<div class="modal__item-title">
 										<span>Marenkiunelma</span>
 										<div class="modal__meal-tags">
-											<span class="modal__item-tag modal__item-tag--orange">G</span>
-											<span class="modal__item-tag modal__item-tag--blue">L</span>
+											<span
+												class="modal__item-tag modal__item-tag--orange"
+												>G</span
+											>
+											<span
+												class="modal__item-tag modal__item-tag--blue"
+												>L</span
+											>
 										</div>
 									</div>
 								</div>
-								<span class="modal__price">1,00 € / 1,20 € / 1,20 €</span>
+								<span class="modal__price"
+									>1,00 € / 1,20 € / 1,20 €</span
+								>
 							</li>
 						</ul>
 					</section>
 
 					<div class="modal__accent">
-						Dietary keys: A = allergen information available, G = gluten free, ILM = low lactose and milk free, Veg = vegan, VS = vegan suitable, L = lactose free, M = milk free, VL = low lactose.
-						Please confirm ingredient lists with service staff for severe allergies.
+						Dietary keys: A = allergen information available, G =
+						gluten free, ILM = low lactose and milk free, Veg =
+						vegan, VS = vegan suitable, L = lactose free, M = milk
+						free, VL = low lactose. Please confirm ingredient lists
+						with service staff for severe allergies.
 					</div>
 				</div>
 
@@ -212,52 +277,95 @@
 						<ul class="modal__list">
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Soy balls, beetroot hummus with organic chickpeas and rice</span>
+									<span
+										>Soy balls, beetroot hummus with organic
+										chickpeas and rice</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Minced meat sauce and potatoes</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Cauliflower and broccoli soup</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Bread lunch: Stuffed baguette, includes extra salad and drink</span>
+									<span
+										>Bread lunch: Stuffed baguette, includes
+										extra salad and drink</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 8,45 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 8,45 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Mango Mousse</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--pink">VL</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>VL</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">1,00 € / 1,20 € / 1,20 €</span>
+								<span class="modal__price"
+									>1,00 € / 1,20 € / 1,20 €</span
+								>
 							</li>
 						</ul>
 					</section>
@@ -272,58 +380,106 @@
 								<div class="modal__item-title">
 									<span>Vegetable Lasagna</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Lime-coriander cod, Sour Cream sauce and potatoes</span>
+									<span
+										>Lime-coriander cod, Sour Cream sauce
+										and potatoes</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Carrot and Ginger puree Soup</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 9,50 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 9,50 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Bread lunch: Stuffed baguette, includes side salad and drink</span>
+									<span
+										>Bread lunch: Stuffed baguette, includes
+										side salad and drink</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--pink">VL</span>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>VL</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 8,45 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 8,45 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Overcooked beef in BBQ sauce and potatoes</span>
+									<span
+										>Overcooked beef in BBQ sauce and
+										potatoes</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">5,90 € / 10,90 € / 11,70 €</span>
+								<span class="modal__price"
+									>5,90 € / 10,90 € / 11,70 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Sitruuna-salmiakkimousse</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
-										<span class="modal__item-tag modal__item-tag--pink">VL</span>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>VL</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">1,00 € / 1,20 € / 1,20 €</span>
+								<span class="modal__price"
+									>1,00 € / 1,20 € / 1,20 €</span
+								>
 							</li>
 						</ul>
 					</section>
@@ -336,60 +492,108 @@
 						<ul class="modal__list">
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Sweet potatoes and kale in peanut sauce, roasted potatoes</span>
+									<span
+										>Sweet potatoes and kale in peanut
+										sauce, roasted potatoes</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Minced Meat and Pasta Casserole</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Cheese Soup</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 9,50 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 9,50 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Bread lunch: Stuffed baguette, includes side salad and drink</span>
+									<span
+										>Bread lunch: Stuffed baguette, includes
+										side salad and drink</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 8,45 € / 10 €</span>
+								<span class="modal__price"
+									>3,10 € / 8,45 € / 10 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Oven-roasted potatoes and chicken filling</span>
+									<span
+										>Oven-roasted potatoes and chicken
+										filling</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,45 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,45 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Chocolate Mousse</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">1,00 € / 1,20 € / 1,20 €</span>
+								<span class="modal__price"
+									>1,00 € / 1,20 € / 1,20 €</span
+								>
 							</li>
 						</ul>
 					</section>
@@ -402,62 +606,119 @@
 						<ul class="modal__list">
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Roasted broccoli and organic tofu, soy yogurt and potatoes</span>
+									<span
+										>Roasted broccoli and organic tofu, soy
+										yogurt and potatoes</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Orange-chili cod and mashed potatoes</span>
+									<span
+										>Orange-chili cod and mashed
+										potatoes</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Sweet Potato Soup</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,45 € / 9,50 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,45 € / 9,50 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Bread lunch: Stuffed baguette, includes side salad and drink</span>
+									<span
+										>Bread lunch: Stuffed baguette, includes
+										side salad and drink</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 8,45 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 8,45 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Chicken fillet, cheddar sauce and potatoes</span>
+									<span
+										>Chicken fillet, cheddar sauce and
+										potatoes</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">5,90 € / 10,90 € / 11,70 €</span>
+								<span class="modal__price"
+									>5,90 € / 10,90 € / 11,70 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Marenkiunelma</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">1,00 € / 1,20 € / 1,20 €</span>
+								<span class="modal__price"
+									>1,00 € / 1,20 € / 1,20 €</span
+								>
 							</li>
 						</ul>
 					</section>
@@ -470,58 +731,104 @@
 						<ul class="modal__list">
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Pasta and Vegetable Bolognese Sauce</span>
+									<span
+										>Pasta and Vegetable Bolognese
+										Sauce</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Cajun chicken and peppers and sweet potato mashed potatoes</span>
+									<span
+										>Cajun chicken and peppers and sweet
+										potato mashed potatoes</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,25 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,25 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Root Puree Soup</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--pink">M</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--pink"
+											>M</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 7,45 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 7,45 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
-									<span>Bread lunch: Stuffed baguette, includes side salad and drink</span>
+									<span
+										>Bread lunch: Stuffed baguette, includes
+										side salad and drink</span
+									>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">3,10 € / 8,45 € / 10,00 €</span>
+								<span class="modal__price"
+									>3,10 € / 8,45 € / 10,00 €</span
+								>
 							</li>
 							<li class="modal__item modal__item--s">
 								<div class="modal__item-title">
 									<span>Berry Quark</span>
 									<div class="modal__meal-tags">
-										<span class="modal__item-tag modal__item-tag--orange">G</span>
-										<span class="modal__item-tag modal__item-tag--blue">L</span>
+										<span
+											class="modal__item-tag modal__item-tag--orange"
+											>G</span
+										>
+										<span
+											class="modal__item-tag modal__item-tag--blue"
+											>L</span
+										>
 									</div>
 								</div>
-								<span class="modal__price">1,00 € / 1,20 € / 1,20 €</span>
+								<span class="modal__price"
+									>1,00 € / 1,20 € / 1,20 €</span
+								>
 							</li>
 						</ul>
 					</section>
 
 					<div class="modal__accent">
-						Dietary keys: A = allergen information available, G = gluten free, ILM = low lactose and milk free, Veg = vegan, VS = vegan suitable, L = lactose free, M = milk free, VL = low lactose.
-						Please confirm ingredient lists with service staff for severe allergies.
+						Dietary keys: A = allergen information available, G =
+						gluten free, ILM = low lactose and milk free, Veg =
+						vegan, VS = vegan suitable, L = lactose free, M = milk
+						free, VL = low lactose. Please confirm ingredient lists
+						with service staff for severe allergies.
 					</div>
 				</div>
 			</div>

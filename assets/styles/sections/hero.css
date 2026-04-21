@@ -26,11 +26,10 @@
   gap: 2px;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 96px;
-  line-height: 0.9;
+  line-height: 1;
 
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -1px;
 
   padding-block: 8px 16px;
 }

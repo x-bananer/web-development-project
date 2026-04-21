@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>StudEat Login</title>
-		<link rel="icon" href="../../assets/favicon.png" type="image/png">
-		<link rel="stylesheet" href="../../assets/styles/index.css">
+		<link rel="icon" href="../../assets/favicon.png" type="image/png" />
+		<link rel="stylesheet" href="../../assets/styles/index.css" />
+		<script src="./index.js" defer></script>
 	</head>
 	<body>
 		<header class="header">
@@ -18,14 +19,20 @@
 					<a class="header__nav-link" href="../../index.html"
 						>List view</a
 					>
-					<a class="header__nav-link" href="../../pages/map/index.html">Map View</a>
+					<a
+						class="header__nav-link"
+						href="../../pages/map/index.html"
+						>Map View</a
+					>
 				</nav>
 
 				<a
-					class="button button--square button--icon"
+					class="button header-auth-button"
 					href="../../pages/login/index.html"
+					data-login-href="../../pages/login/index.html"
+					data-profile-href="../../pages/profile/index.html"
 				>
-					☻
+					Login
 				</a>
 			</div>
 		</header>
@@ -53,7 +60,6 @@
 						<button class="auth__tab" id="signup-tab" type="button">
 							Sign Up
 						</button>
-						<span class="auth__sticker">Lunch time?</span>
 					</div>
 
 					<div class="auth__body">
@@ -62,72 +68,46 @@
 							id="login-form"
 						>
 							<label class="filters__group">
-								<span class="filters__label">Email</span>
+								<span class="filters__label">Username</span>
 								<span class="filters__field">
 									<input
 										class="filters__control"
-										type="email"
-										name="email"
-										placeholder="email@student.fi"
-										autocomplete="email"
-									>
+										type="text"
+										name="username"
+										autocomplete="username"
+									/>
 								</span>
 							</label>
 
 							<label class="filters__group">
-								<span class="auth__field-top">
-									<span class="filters__label">Password</span>
-									<a class="auth__link" href="#">Forgot?</a>
-								</span>
+								<span class="filters__label">Password</span>
 								<span class="filters__field">
 									<input
 										class="filters__control"
 										type="password"
 										name="password"
 										autocomplete="current-password"
-									>
+									/>
 								</span>
-							</label>
-
-							<label class="auth__check">
-								<input
-									class="auth__checkbox"
-									type="checkbox"
-									name="remember"
-								>
-								<span class="auth__check-box"></span>
-								<span class="auth__check-text"
-									>Stay logged in on this device</span
-								>
 							</label>
 
 							<button class="button auth__submit" type="submit">
 								Login
 							</button>
 
-							<p class="auth__footer-text">
-								New to STUDEAT?
-								<button
-									class="auth__switch"
-									id="signup-switch"
-									type="button"
-								>
-									Sign up
-								</button>
-							</p>
+							<p class="auth__message" id="login-message"></p>
 						</form>
 
 						<form class="auth__form" id="signup-form">
 							<label class="filters__group">
-								<span class="filters__label">Full Name</span>
+								<span class="filters__label">Username</span>
 								<span class="filters__field">
 									<input
 										class="filters__control"
 										type="text"
-										name="name"
-										placeholder="your name"
-										autocomplete="name"
-									>
+										name="username"
+										autocomplete="username"
+									/>
 								</span>
 							</label>
 
@@ -137,70 +117,29 @@
 									<input
 										class="filters__control"
 										type="email"
-										name="signup-email"
-										placeholder="email@student.fi"
+										name="email"
 										autocomplete="email"
-									>
+									/>
 								</span>
 							</label>
 
 							<label class="filters__group">
-								<span class="filters__label"
-									>Create Password</span
-								>
+								<span class="filters__label">Password</span>
 								<span class="filters__field">
 									<input
 										class="filters__control"
 										type="password"
-										name="signup-password"
-										placeholder="create password"
+										name="password"
 										autocomplete="new-password"
-									>
+									/>
 								</span>
-							</label>
-
-							<label class="filters__group">
-								<span class="filters__label"
-									>Repeat Password</span
-								>
-								<span class="filters__field">
-									<input
-										class="filters__control"
-										type="password"
-										name="signup-password-repeat"
-										placeholder="repeat password"
-										autocomplete="new-password"
-									>
-								</span>
-							</label>
-
-							<label class="auth__check">
-								<input
-									class="auth__checkbox"
-									type="checkbox"
-									name="terms"
-								>
-								<span class="auth__check-box"></span>
-								<span class="auth__check-text"
-									>I agree to the terms and privacy
-									policy</span
-								>
 							</label>
 
 							<button class="button auth__submit" type="submit">
 								Sign Up
 							</button>
 
-							<p class="auth__footer-text">
-								Already have an account?
-								<button
-									class="auth__switch"
-									id="login-switch"
-									type="button"
-								>
-									Login
-								</button>
-							</p>
+							<p class="auth__message" id="signup-message"></p>
 						</form>
 					</div>
 				</div>
@@ -214,47 +153,13 @@
 		<nav class="toggle">
 			<div class="toggle__frame">
 				<a class="toggle__link" href="../../index.html">Cards</a>
-				<a class="toggle__link toggle__link--active" href="../../pages/map/index.html">
+				<a
+					class="toggle__link toggle__link--active"
+					href="../../pages/map/index.html"
+				>
 					Map View
 				</a>
 			</div>
 		</nav>
-
-		<script>
-			const loginTab = document.getElementById('login-tab');
-			const signupTab = document.getElementById('signup-tab');
-			const loginForm = document.getElementById('login-form');
-			const signupForm = document.getElementById('signup-form');
-			const loginSwitch = document.getElementById('login-switch');
-			const signupSwitch = document.getElementById('signup-switch');
-			const profilePageUrl = '../../pages/profile/index.html';
-
-			const showLogin = () => {
-				loginTab?.classList.add('auth__tab--active');
-				signupTab?.classList.remove('auth__tab--active');
-				loginForm?.classList.add('auth__form--active');
-				signupForm?.classList.remove('auth__form--active');
-			};
-
-			const showSignup = () => {
-				signupTab?.classList.add('auth__tab--active');
-				loginTab?.classList.remove('auth__tab--active');
-				signupForm?.classList.add('auth__form--active');
-				loginForm?.classList.remove('auth__form--active');
-			};
-
-			loginTab?.addEventListener('click', showLogin);
-			signupTab?.addEventListener('click', showSignup);
-			loginSwitch?.addEventListener('click', showLogin);
-			signupSwitch?.addEventListener('click', showSignup);
-			loginForm?.addEventListener('submit', (event) => {
-				event.preventDefault();
-				window.location.href = profilePageUrl;
-			});
-			signupForm?.addEventListener('submit', (event) => {
-				event.preventDefault();
-				window.location.href = profilePageUrl;
-			});
-		</script>
 	</body>
 </html>

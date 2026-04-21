@@ -31,10 +31,12 @@
 				</nav>
 
 				<a
-					class="button button--square button--icon"
+					class="button header-auth-button"
 					href="./pages/login/index.html"
+					data-login-href="./pages/login/index.html"
+					data-profile-href="./pages/profile/index.html"
 				>
-					☻
+					Login
 				</a>
 			</div>
 		</header>
@@ -84,13 +86,19 @@
 					<label class="filters__group">
 						<span class="filters__label">Company</span>
 						<span class="filters__field filters__field--pink">
-							<select class="filters__control" id="filter-company">
+							<select
+								class="filters__control"
+								id="filter-company"
+							>
 								<option value="">All Companies</option>
 							</select>
 						</span>
 					</label>
 
-					<button class="filters__button button button--reset" type="reset">
+					<button
+						class="filters__button button button--reset"
+						type="reset"
+					>
 						Reset
 					</button>
 				</form>
@@ -115,7 +123,9 @@
 				>
 					List view
 				</a>
-				<a class="toggle__link" href="./pages/map/index.html"> Map View </a>
+				<a class="toggle__link" href="./pages/map/index.html">
+					Map View
+				</a>
 			</div>
 		</nav>
 

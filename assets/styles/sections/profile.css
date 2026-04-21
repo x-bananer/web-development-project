@@ -46,6 +46,29 @@
   grid-column: 1 / -1;
 }
 
+.profile__message {
+  display: none;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.profile__message:not(:empty) {
+  display: block;
+}
+
+.profile__message--error {
+  background-color: var(--pink-color);
+  color: var(--red-color);
+}
+
+.profile__message--success {
+  background-color: var(--green-color);
+  color: #FFFFFF;
+}
+
 .profile__submit {
   grid-column: 1 / -1;
   width: 280px;
@@ -55,10 +78,13 @@
   background: var(--yellow-color);
 }
 
-@media (max-width: 960px) {
-  .profile__submit {
-    width: 100%;
-  }
+.profile__logout {
+  grid-column: 1 / -1;
+  width: 280px;
+  height: 62px;
+  font-weight: 700;
+  font-size: 16px;
+  background: var(--light-gray-color);
 }
 
 @media (max-width: 768px) {
@@ -83,6 +109,11 @@
 
   .profile__submit {
     margin-top: 16px;
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .profile__logout {
     width: 100%;
     min-height: 50px;
   }

@@ -34,6 +34,14 @@
   font-size: 28px;
 }
 
+.button--login {
+  min-width: 108px;
+  min-height: 52px;
+  padding-inline: 20px;
+  font-size: 16px;
+  background: var(--yellow-color);
+}
+
 .button--reset {
   height: 52px;
   min-height: 52px;

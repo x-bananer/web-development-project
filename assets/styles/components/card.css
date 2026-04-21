@@ -20,12 +20,18 @@
 }
 
 .card.card--favorite::before {
-  content: '♥';
+  content: 'Favorite ♥';
   position: absolute;
   top: 0px;
-  right: 8px;
+  right: 0px;
   color: var(--red-color);
-  font-size: 40px;
+  font-size: 20px;
+  background-color: var(--red-color);
+  color: white;
+  font-weight: 800;
+  padding: 8px 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .card.card--favorite .card__favorite-button,
@@ -97,7 +103,6 @@
   line-height: 1;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -1px;
 }
 
 .card__address {
