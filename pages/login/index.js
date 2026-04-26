@@ -10,22 +10,19 @@ const signupForm = document.getElementById('signup-form');
 const loginMessage = document.getElementById('login-message');
 const signupMessage = document.getElementById('signup-message');
 
-const getStoredUser = () => {
-	try {
-		return JSON.parse(localStorage.getItem(USER_KEY) || 'null');
-	} catch (error) {
-		console.error(error);
-		return null;
-	}
-};
+const loginUsernameInput = loginForm.querySelector('input[name="username"]');
+const loginPasswordInput = loginForm.querySelector('input[name="password"]');
+const signupUsernameInput = signupForm.querySelector('input[name="username"]');
+const signupEmailInput = signupForm.querySelector('input[name="email"]');
+const signupPasswordInput = signupForm.querySelector('input[name="password"]');
+
+const getStoredUser = () => JSON.parse(localStorage.getItem(USER_KEY) || 'null');
 
 const updateHeaderAuthButton = () => {
 	const authButton = document.querySelector('.header-auth-button');
 	const isLoggedIn = Boolean(localStorage.getItem(TOKEN_KEY));
 	const user = getStoredUser();
-	const avatar = user?.avatar;
-
-	if (!authButton) return;
+	const avatar = user ? user.avatar : '';
 
 	authButton.href = isLoggedIn
 		? authButton.dataset.profileHref
@@ -42,32 +39,21 @@ const updateHeaderAuthButton = () => {
 	authButton.textContent = isLoggedIn ? '☻' : 'Login';
 };
 
-const debounce = (callback, delay = 400) => {
-	let timeoutId;
-
-	return (...args) => {
-		clearTimeout(timeoutId);
-		timeoutId = setTimeout(() => callback(...args), delay);
-	};
-};
-
 const showLogin = () => {
-	loginTab?.classList.add('auth__tab--active');
-	signupTab?.classList.remove('auth__tab--active');
-	loginForm?.classList.add('auth__form--active');
-	signupForm?.classList.remove('auth__form--active');
+	loginTab.classList.add('auth__tab--active');
+	signupTab.classList.remove('auth__tab--active');
+	loginForm.classList.add('auth__form--active');
+	signupForm.classList.remove('auth__form--active');
 };
 
 const showSignup = () => {
-	signupTab?.classList.add('auth__tab--active');
-	loginTab?.classList.remove('auth__tab--active');
-	signupForm?.classList.add('auth__form--active');
-	loginForm?.classList.remove('auth__form--active');
+	signupTab.classList.add('auth__tab--active');
+	loginTab.classList.remove('auth__tab--active');
+	signupForm.classList.add('auth__form--active');
+	loginForm.classList.remove('auth__form--active');
 };
 
 const setMessage = (element, text, isError = false) => {
-	if (!element) return;
-
 	element.textContent = text;
 	element.classList.toggle('auth__message--error', isError);
 };
@@ -77,35 +63,12 @@ const saveAuth = (token, user) => {
 	localStorage.setItem(USER_KEY, JSON.stringify(user));
 };
 
-const checkUsername = async (username) => {
-	if (!username) return false;
+const handleLoginSubmit = async (event) => {
+	event.preventDefault();
+	setMessage(loginMessage, '');
 
-	try {
-		const response = await fetch(
-			`${API_URL}/api/v1/users/available/${encodeURIComponent(username)}`
-		);
-		const result = await response.json();
-
-		if (!response.ok) {
-			return false;
-		}
-
-		if (result.available) {
-			return true;
-		}
-
-		return false;
-	} catch (error) {
-		console.error(error);
-		return false;
-	}
-};
-
-const handleLoginSubmit = async () => {
-	const username =
-		loginForm.querySelector('input[name="username"]')?.value.trim() || '';
-	const password =
-		loginForm.querySelector('input[name="password"]')?.value.trim() || '';
+	const username = loginUsernameInput.value.trim();
+	const password = loginPasswordInput.value;
 
 	try {
 		const response = await fetch(`${API_URL}/api/v1/auth/login`, {
@@ -128,20 +91,13 @@ const handleLoginSubmit = async () => {
 	}
 };
 
-const handleSignupSubmit = async () => {
-	const username =
-		signupForm.querySelector('input[name="username"]')?.value.trim() || '';
-	const email =
-		signupForm.querySelector('input[name="email"]')?.value.trim() || '';
-	const password =
-		signupForm.querySelector('input[name="password"]')?.value.trim() || '';
+const handleSignupSubmit = async (event) => {
+	event.preventDefault();
+	setMessage(signupMessage, '');
 
-	const usernameAvailable = username ? await checkUsername(username) : true;
-
-	if (!usernameAvailable) {
-		setMessage(signupMessage, 'Error.', true);
-		return;
-	}
+	const username = signupUsernameInput.value.trim();
+	const email = signupEmailInput.value.trim();
+	const password = signupPasswordInput.value;
 
 	try {
 		const response = await fetch(`${API_URL}/api/v1/users`, {
@@ -167,18 +123,9 @@ const handleSignupSubmit = async () => {
 	}
 };
 
-const debouncedLoginSubmit = debounce(handleLoginSubmit);
-const debouncedSignupSubmit = debounce(handleSignupSubmit);
+loginForm.addEventListener('submit', handleLoginSubmit);
+signupForm.addEventListener('submit', handleSignupSubmit);
+loginTab.addEventListener('click', showLogin);
+signupTab.addEventListener('click', showSignup);
 
-loginForm?.addEventListener('submit', (event) => {
-	event.preventDefault();
-	debouncedLoginSubmit();
-});
-
-signupForm?.addEventListener('submit', (event) => {
-	event.preventDefault();
-	debouncedSignupSubmit();
-});
-loginTab?.addEventListener('click', showLogin);
-signupTab?.addEventListener('click', showSignup);
 updateHeaderAuthButton();
