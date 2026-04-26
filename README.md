@@ -1,11 +1,38 @@
-Vanilla JS web application for viewing Finnish student restaurants and their daily and weekly menus.
+# StudEat
 
-## Student info
+Web app for exploring Finnish student restaurants with daily and weekly menus.
 
-Kseniia Shlenskaia  
-Tieto-ja viestintätekniikka  
-TVT25K-O  
-Ohjelmistotuotanto
+Live: https://x-bananer.github.io/web-development-project/
+
+## Features
+
+- Restaurant list
+- Daily / weekly menus
+- Filters (city, provider)
+- Search by name
+- Map with markers
+- Nearest restaurant highlight
+- Login / registration
+- Profile editing
+- Favorite restaurant pinned
+- Avatar upload
+
+## Tech
+
+- Vanilla JavaScript (ES6+)
+- HTML5 (validated)
+- CSS (no frameworks)
+- REST API
+
+## Structure
+
+- `index.html` – restaurants list
+- `pages/main` – filters, list logic, modals
+- `pages/map` – map, markers, nearest logic, modals
+- `pages/login` – auth
+- `pages/profile` – profile, avatar
+- `assets/styles` – styles
+- `assets/icons` – assets
 
 ## Requirements
 
@@ -31,6 +58,6 @@ Ohjelmistotuotanto
 - [x] Good programming practices are followed
 - [x] Naming is logical and consistent
 - [x] Indentation and formatting are clean
-- [ ] HTML and CSS are professionally implemented and validated
+- [x] HTML and CSS are professionally implemented and validated
 - [x] The UI is clean and clear
 - [x] Responsive design is implemented
