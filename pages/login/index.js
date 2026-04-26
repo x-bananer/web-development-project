@@ -80,7 +80,7 @@ const handleLoginSubmit = async (event) => {
 		const result = await response.json();
 
 		if (!response.ok || !result.token) {
-			throw new Error(result.message || 'Error.');
+			throw new Error(result.message || 'Error');
 		}
 
 		saveAuth(result.token, result.data);
@@ -109,7 +109,7 @@ const handleSignupSubmit = async (event) => {
 		const result = await response.json();
 
 		if (!response.ok) {
-			throw new Error(result.message || 'Error.');
+			throw new Error(result.message || 'Error');
 		}
 
 		setMessage(

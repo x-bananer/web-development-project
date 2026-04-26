@@ -186,7 +186,7 @@ const setFavouriteRestaurant = async (restaurantId) => {
 		const result = await response.json();
 
 		if (!response.ok) {
-			throw new Error(result.message || 'Error.');
+			throw new Error(result.message || 'Error');
 		}
 
 		currentUser = result.data;
