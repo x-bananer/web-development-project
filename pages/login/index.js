@@ -16,7 +16,8 @@ const signupUsernameInput = signupForm.querySelector('input[name="username"]');
 const signupEmailInput = signupForm.querySelector('input[name="email"]');
 const signupPasswordInput = signupForm.querySelector('input[name="password"]');
 
-const getStoredUser = () => JSON.parse(localStorage.getItem(USER_KEY) || 'null');
+const getStoredUser = () =>
+	JSON.parse(localStorage.getItem(USER_KEY) || 'null');
 
 const updateHeaderAuthButton = () => {
 	const authButton = document.querySelector('.header-auth-button');
