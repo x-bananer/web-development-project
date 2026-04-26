@@ -2,7 +2,7 @@
 
 Web app for exploring Finnish student restaurants with daily and weekly menus.
 
-Live: https://x-bananer.github.io/web-development-project/
+Live: https://x-bananer.github.io/studeat/
 
 ## Features
 
